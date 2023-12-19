@@ -10,12 +10,12 @@ const ShoppingPage = async () => {
         "collectionName": collectionRef->name,
         year,
         price,
-    }`;
+        }`;
 	const wines: Wine[] = await client.fetch(query);
 	return (
 		<div>
 			{wines.map((wine) => {
-				return <div key={wine._id}></div>;
+				return <div key={wine._id}>{wine.name}</div>;
 			})}
 		</div>
 	);

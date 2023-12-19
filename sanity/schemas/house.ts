@@ -6,7 +6,7 @@ export default {
 		{
 			name: 'name',
 			type: 'string',
-			title: 'Name',
+			title: 'Name of House',
 		},
 	],
 };

@@ -19,26 +19,26 @@ export default {
 			title: 'Image',
 		},
 		{
-			name: 'house',
-			type: 'object',
-			fields: [
-				{
-					name: 'house',
-					type: 'reference',
-					to: [{ type: 'house' }],
-				},
-			],
+			name: 'year',
+			type: 'string',
+			title: 'Year Produced',
 		},
 		{
-			name: 'collection',
-			type: 'object',
-			fields: [
-				{
-					name: 'collection',
-					type: 'reference',
-					to: [{ type: 'collection' }],
-				},
-			],
+			name: 'slug',
+			type: 'slug',
+			title: 'Slug',
+		},
+		{
+			name: 'houseRef',
+			title: 'Wine House',
+			type: 'reference',
+			to: [{ type: 'house' }],
+		},
+		{
+			name: 'collectionRef',
+			title: 'Wine Collection',
+			type: 'reference',
+			to: [{ type: 'collection' }],
 		},
 	],
 };

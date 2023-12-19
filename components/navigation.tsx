@@ -1,5 +1,11 @@
-const Navigation = () => {
-	return <div></div>;
-};
+import React from 'react'
 
-export default Navigation;
+type Props = {}
+
+const navigation = (props: Props) => {
+  return (
+	<div>navigation</div>
+  )
+}
+
+export default navigation

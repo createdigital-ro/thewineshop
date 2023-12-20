@@ -25,6 +25,9 @@ export default function Home() {
 	];
 	return (
 		<>
+			<video autoPlay loop muted className='rounded '>
+				<source src="/home/video-home.mp4" />
+			</video>
 			<Divider />
 			<section className='my-16'>
 				<h1 className='text-2xl md:text-4xl font-semibold mb-4'>Bine ați venit la TheWineShop</h1>

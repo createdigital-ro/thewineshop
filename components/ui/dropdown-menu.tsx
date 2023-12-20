@@ -183,7 +183,7 @@ const DropdownNavigation = ({
 				<DropdownMenuSeparator />
 				{houses.map(({ name }) => (
 					<DropdownMenuItem key={name}>
-						<Link href={`/vinuri?house=${name}`}>{name}</Link>
+						<Link href={`/vinuri?house="${name}"`}>{name}</Link>
 					</DropdownMenuItem>
 				))}
 			</DropdownMenuContent>

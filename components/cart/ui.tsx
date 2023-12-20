@@ -61,7 +61,7 @@ const ShoppingCartSheet = () => {
 		formattedTotalPrice,
 	} = useShoppingCart();
 	return (
-		<Sheet className open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
+		<Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
 			<SheetContent>
 				<SheetHeader className='text-3xl mb-4 text-bold'>Cosul de Cumparaturi</SheetHeader>
 				{cartCount === 0 ? (
@@ -70,7 +70,7 @@ const ShoppingCartSheet = () => {
 					<div className='flex flex-col max-h-[70%] overflow-y-auto'>
 						{Object.values(cartDetails ?? {}).map((product) => {
 							return (
-								<div className='w-full bg-muted rounded p-4 my-2 first:mt-0 last:mb-0'>
+								<div key={product.id} className='w-full bg-muted rounded p-4 my-2 first:mt-0 last:mb-0'>
 									<div className='flex gap-3 h-full'>
 										<div className='w-[130px]'>
 											<AspectRatio ratio={1 / 1}>

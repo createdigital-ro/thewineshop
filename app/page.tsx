@@ -6,14 +6,13 @@ export default function Home() {
 	const hosues = [
 		{
 			imageUrl: '/home/photo1-home.png',
-			imageAlt: "Imagine pahar de vin",
+			imageAlt: 'Imagine pahar de vin',
 			name: `Bine ați venit la TheWineShop`,
 			reversed: false,
-			description:
-				`Produsele noastre rafinate sunt un adevărat privilegiu pentru pasionații de vin, fiind o poartă
+			description: `Produsele noastre rafinate sunt un adevărat privilegiu pentru pasionații de vin, fiind o poartă
 				către lumea vinurilor cu adevărat excelente. Fie că sunteți somelier experimentat sau începător
 				entuziast, vă invităm să descoperiți emoția pură a gustului în fiecare sticlă Thewineshop! Din
-				regiuni pitorești ale Italiei, cramele precum &quot;Marchesi de' Cordano", "Casa Di
+				regiuni pitorești ale Italiei, cramele precum "Marchesi de' Cordano", "Casa Di
 				Terra" și "Podere Don Cataldo" aduc la viață tradiția și pasiunea în fiecare strop de
 				licor vinicol.`,
 		},
@@ -29,7 +28,7 @@ export default function Home() {
 	return (
 		<>
 			<video autoPlay loop muted className='rounded '>
-				<source src="/home/video-home.mp4" />
+				<source src='/home/video-home.mp4' />
 			</video>
 			<Divider />
 			<section className='mt-20'>

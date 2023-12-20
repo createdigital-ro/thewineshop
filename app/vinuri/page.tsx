@@ -17,6 +17,7 @@ const ShoppingPage = async () => {
         "collectionName": collectionRef->name,
         year,
         price,
+		price_id,
 		"slug": slug.current
     	}`;
 	const wines: Wine[] = await client.fetch(query);
@@ -32,7 +33,7 @@ const ShoppingPage = async () => {
 			</div>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-				{[...wines, ...wines, ...wines].map((wine) => {
+				{wines.map((wine) => {
 					return (
 						<div key={wine._id} className='bg-muted w-full shadow-md shadow-primary/5'>
 							<Link href={`/vinuri/${wine.slug}`} className=''>

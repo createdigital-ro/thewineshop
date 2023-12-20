@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { UserCircle, ShoppingCart, Search, ChevronDown, Menu } from 'lucide-react';
+import { ShoppingCart, Search, ChevronDown, Menu, UserCircle } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger, DropdownNavigation } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetClose, SheetContent, SheetPortal, SheetTrigger } from '@/components/ui/sheet';
 import { client } from '@/sanity/lib/client';
+import { ShoppingCartComponent } from './cart/ui';
 
 const Navigation = async () => {
 	const query = `*[_type == "house"]{
@@ -27,8 +28,8 @@ const Navigation = async () => {
 				<Link href={'/povestea-noastra'}>Povestea Noastra</Link>
 			</div>
 			<div className='flex gap-4'>
+				<ShoppingCartComponent />
 				<UserCircle />
-				<ShoppingCart />
 				<Search />
 				<div className='flex gap-2'>
 					<Sheet>
@@ -55,7 +56,7 @@ const Navigation = async () => {
 								</DropdownMenuTrigger>
 								<DropdownNavigation houses={houses} mobile={true} />
 							</DropdownMenu>
-							{/* <Link href={'/povestea-noastra'}>Povestea Noastra</Link> */}
+							<Link href={'/povestea-noastra'}>Povestea Noastra</Link>
 						</SheetContent>
 					</Sheet>
 				</div>

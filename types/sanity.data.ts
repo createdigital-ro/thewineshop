@@ -7,5 +7,6 @@ export type Wine = {
 	collectionName: string;
 	year: string;
 	price: number;
+	price_id: string;
 	slug: string;
 };

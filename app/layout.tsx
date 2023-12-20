@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/Footer';
+import { CartProviderClient, ShoppingCartSheet } from '@/components/cart/ui';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
@@ -15,9 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='ro'>
 			<body className={nunito.className}>
-				<Navigation />
-				<main className='max-w-6xl mx-auto px-8'>{children}</main>
-				<Footer />
+				<CartProviderClient>
+					<Navigation />
+					<main className='max-w-6xl mx-auto px-8'>{children}</main>
+					<ShoppingCartSheet />
+					<Footer />
+				</CartProviderClient>
 			</body>
 		</html>
 	);

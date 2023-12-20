@@ -25,9 +25,12 @@ export default function Home() {
 	];
 	return (
 		<>
-			<video autoPlay loop muted className='rounded '>
-				<source src="/home/video-home.mp4" />
-			</video>
+			<div className='my-6'>
+				<video autoPlay loop muted className='rounded '>
+					<source src='/home/video-home.mp4' />
+				</video>
+			</div>
+
 			<Divider />
 			<section className='my-16'>
 				<h1 className='text-2xl md:text-4xl font-semibold mb-4'>Bine ați venit la TheWineShop</h1>
@@ -42,7 +45,7 @@ export default function Home() {
 			</section>
 			<section>
 				<div className='relative mt-8 w-full'>
-					<blockquote className='font-bold text-2xl md:text-4xl text-justify'>
+					<blockquote className='font-bold text-2xl md:text-3xl text-justify'>
 						Este bine să ne amintim că există cinci motive pentru a bea vin: sosirea unui prieten, setea
 						actuală sau viitoare, excelența vinului, sau din orice alt motiv.
 					</blockquote>

@@ -17,7 +17,6 @@ const ShoppingPage = async () => {
         "collectionName": collectionRef->name,
         year,
         price,
-		price_id,
 		"slug": slug.current
     	}`;
 	const wines: Wine[] = await client.fetch(query);

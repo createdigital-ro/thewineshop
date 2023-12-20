@@ -32,8 +32,9 @@ export default function Home() {
 					Produsele noastre rafinate sunt un adevărat privilegiu pentru pasionații de vin, fiind o poartă
 					către lumea vinurilor cu adevărat excelente. Fie că sunteți somelier experimentat sau începător
 					entuziast, vă invităm să descoperiți emoția pură a gustului în fiecare sticlă Thewineshop! Din
-					regiuni pitorești ale Italiei, cramele precum "Marchesi de' Cordano”, "Casa Di Terra" și "Podere Don
-					Cataldo” aduc la viață tradiția și pasiunea în fiecare strop de licor vinicol.
+					regiuni pitorești ale Italiei, cramele precum &quot;Marchesi de&apos; Cordano&quot;, &quot;Casa Di
+					Terra&quot; și &quot;Podere Don Cataldo&quot; aduc la viață tradiția și pasiunea în fiecare strop de
+					licor vinicol.
 				</p>
 			</section>
 			<section>

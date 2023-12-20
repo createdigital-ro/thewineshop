@@ -69,7 +69,7 @@ export default function Footer() {
 				<section className='flex flex-col items-center'>
 					<p className='font-semibold mb-2'>Suport clienți</p>
 					{contacts.map((c) => (
-						<div className='flex gap-2 hover:text-zinc-500 active:text-zinc-500'>
+						<div key={c.href} className='flex gap-2 hover:text-zinc-500 active:text-zinc-500'>
 							{c.icon}
 							<a href={c.href}>{c.placeholder}</a>
 						</div>

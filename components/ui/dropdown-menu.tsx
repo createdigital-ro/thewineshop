@@ -6,6 +6,7 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
+import { SheetClose, SheetPortal } from './sheet';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -163,21 +164,49 @@ const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTML
 };
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
-const DropdownNavigation = ({ houses, ...props }: { houses: { name: string }[]; props?: any }) => {
+const DropdownNavigation = ({
+	houses,
+	mobile,
+	...props
+}: {
+	houses: { name: string }[];
+	mobile: boolean;
+	props?: any;
+}) => {
+	if (!mobile)
+		return (
+			<DropdownMenuContent className={cn({ ...props })}>
+				<DropdownMenuItem>
+					<Link href={'/vinuri'}>Toate Vinurile</Link>
+				</DropdownMenuItem>
+
+				<DropdownMenuSeparator />
+				{houses.map(({ name }) => (
+					<DropdownMenuItem key={name}>
+						<Link href={`/vinuri?house=${name}`}>{name}</Link>
+					</DropdownMenuItem>
+				))}
+			</DropdownMenuContent>
+		);
 	return (
 		<DropdownMenuContent className={cn({ ...props })}>
 			<DropdownMenuItem>
-				<Link href={'/vinuri'}>Toate Vinurile</Link>
+				<SheetClose asChild>
+					<Link href={'/vinuri'}>Toate Vinurile</Link>
+				</SheetClose>
 			</DropdownMenuItem>
 			<DropdownMenuSeparator />
 			{houses.map(({ name }) => (
 				<DropdownMenuItem key={name}>
-					<Link href={`/vinuri?house=${name}`}>{name}</Link>
+					<SheetClose key={name} asChild>
+						<Link href={`/vinuri?house=${name}`}>{name}</Link>
+					</SheetClose>
 				</DropdownMenuItem>
 			))}
 		</DropdownMenuContent>
 	);
 };
+
 DropdownNavigation.displayName = 'DropdownNavigation';
 
 export {

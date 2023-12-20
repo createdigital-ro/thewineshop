@@ -44,6 +44,7 @@ const ShoppingPage = async () => {
 									alt={`Imagine pentru vinul ${wine.name}`}
 									width={300}
 									height={300}
+									loading={'eager'}
 									className='w-full'
 								/>
 							</Link>

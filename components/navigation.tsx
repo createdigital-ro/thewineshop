@@ -2,15 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { UserCircle, ShoppingCart, Search, ChevronDown, Menu } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger, DropdownNavigation } from '@/components/ui/dropdown-menu';
-import {
-	Sheet,
-	SheetClose,
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-	SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetPortal, SheetTrigger } from '@/components/ui/sheet';
 import { client } from '@/sanity/lib/client';
 
 const Navigation = async () => {
@@ -26,10 +18,11 @@ const Navigation = async () => {
 			<div className='gap-4 text-lg font-semibold hidden sm:flex'>
 				<DropdownMenu>
 					<DropdownMenuTrigger className='flex items-center gap-1'>
-						Crama
-						<ChevronDown />
+						<div className='flex items-center gap-1'>
+							Crama <ChevronDown />
+						</div>
 					</DropdownMenuTrigger>
-					<DropdownNavigation houses={houses} />
+					<DropdownNavigation houses={houses} mobile={false} />
 				</DropdownMenu>
 				<Link href={'/povestea-noastra'}>Povestea Noastra</Link>
 			</div>
@@ -54,16 +47,15 @@ const Navigation = async () => {
 									/>
 								</Link>
 							</SheetClose>
-							<div className='text-3xl font-semibold'>
-								<DropdownMenu>
-									<DropdownMenuTrigger className='flex items-center gap-1'>
-										Crama
-										<ChevronDown />
-									</DropdownMenuTrigger>
-									<DropdownNavigation houses={houses} />
-								</DropdownMenu>
-								<Link href={'/povestea-noastra'}>Povestea Noastra</Link>
-							</div>
+							<DropdownMenu className='text-3xl font-semibold'>
+								<DropdownMenuTrigger asChild className='flex items-center gap-1 text-2xl font-semibold'>
+									<span>
+										Crama <ChevronDown />
+									</span>
+								</DropdownMenuTrigger>
+								<DropdownNavigation houses={houses} mobile={true} />
+							</DropdownMenu>
+							{/* <Link href={'/povestea-noastra'}>Povestea Noastra</Link> */}
 						</SheetContent>
 					</Sheet>
 				</div>

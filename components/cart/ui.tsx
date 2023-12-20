@@ -17,6 +17,7 @@ const AddToCartButton = ({ wine }: { wine: Wine }) => {
 	console.log(wine.imageUrl);
 	const product: Product = {
 		name: wine.name,
+		id: wine._id,
 		price_id: wine.price_id,
 		price: wine.price * 100,
 		image: wine.imageUrl,

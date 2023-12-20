@@ -5,47 +5,36 @@ import Image from 'next/image';
 export default function Home() {
 	const hosues = [
 		{
-			imageUrl: '/home/homepage1.png',
-			imageAlt: "Imagine logo Marchesi de' Cordano",
-			name: `Marchesi de' Cordano`,
-			location: 'Abruzzo, Italia',
+			imageUrl: '/home/photo1-home.png',
+			imageAlt: "Imagine pahar de vin",
+			name: `Bine ați venit la TheWineShop`,
 			reversed: false,
 			description:
-				"Crama Marchesi de' Cordano este conceput ă ca un loc de întâlnire și împărtășire, păstrând credința în filozofia pe care Francesco D'Onofrio vrea să o transmită prin produsele sale. Arhitectura pivniței prezintă o structură inovatoare, realizată în întregime din lemn, caldă și primitoare, care găzduiește degustări și întâlniri și de la care pornește un bogat itinerar de vizită.",
+				`Produsele noastre rafinate sunt un adevărat privilegiu pentru pasionații de vin, fiind o poartă
+				către lumea vinurilor cu adevărat excelente. Fie că sunteți somelier experimentat sau începător
+				entuziast, vă invităm să descoperiți emoția pură a gustului în fiecare sticlă Thewineshop! Din
+				regiuni pitorești ale Italiei, cramele precum &quot;Marchesi de' Cordano", "Casa Di
+				Terra" și "Podere Don Cataldo" aduc la viață tradiția și pasiunea în fiecare strop de
+				licor vinicol.`,
 		},
 		{
-			imageUrl: '/home/homepage2.png',
-			imageAlt: 'Imagine logo Casa Di Terra',
-			name: 'Casa Di Terra',
-			location: 'Toscana, Italia',
+			imageUrl: '/home/photo2-home.png',
+			imageAlt: 'Imagine butoaie de vin',
+			name: 'Descoperiți povestea fiecărui pahar de vin',
 			reversed: true,
 			description:
-				'Casa di Terra a fost înființată în 1950 de către bunicul proprietarului actual, Giuliano și Gessica, frate și soră, în Bolgheri, în inima Toscanei. Aceste terenuri, odată dedicate culturilor tradiționale (cereale, horticultură, ulei de măsline, vin) au lăsat an de an mai mult spațiu podgoriilor până la decizia finală din 2001 de a pune energia moșiei în marcarea vinului.',
+				'Fiecare etichetă spune o poveste unică, iar înțelegerea acestei povestiri este cheia spre adevăratul privilegiu al cunoașterii vinurilor. Pentru cei ce încep această călătorie, Thewineshop devine ghidul lor în lumea vinurilor de excepție, deschizând uși către rafinament și descoperire. În sticlele noastre, veți găsi nu doar vin, ci povestea și pasiunea ce transformă fiecare degustare într-o experiență memorabilă.',
 		},
 	];
 	return (
 		<>
-			<div className='my-6'>
-				<video autoPlay loop muted className='rounded '>
-					<source src='/home/video-home.mp4' />
-				</video>
-			</div>
-
+			<video autoPlay loop muted className='rounded '>
+				<source src="/home/video-home.mp4" />
+			</video>
 			<Divider />
-			<section className='my-16'>
-				<h1 className='text-2xl md:text-4xl font-semibold mb-4'>Bine ați venit la TheWineShop</h1>
-				<p className='text-lg'>
-					Produsele noastre rafinate sunt un adevărat privilegiu pentru pasionații de vin, fiind o poartă
-					către lumea vinurilor cu adevărat excelente. Fie că sunteți somelier experimentat sau începător
-					entuziast, vă invităm să descoperiți emoția pură a gustului în fiecare sticlă Thewineshop! Din
-					regiuni pitorești ale Italiei, cramele precum &quot;Marchesi de&apos; Cordano&quot;, &quot;Casa Di
-					Terra&quot; și &quot;Podere Don Cataldo&quot; aduc la viață tradiția și pasiunea în fiecare strop de
-					licor vinicol.
-				</p>
-			</section>
-			<section>
+			<section className='mt-20'>
 				<div className='relative mt-8 w-full'>
-					<blockquote className='font-bold text-2xl md:text-3xl text-justify'>
+					<blockquote className='font-bold text-2xl md:text-4xl text-justify'>
 						Este bine să ne amintim că există cinci motive pentru a bea vin: sosirea unui prieten, setea
 						actuală sau viitoare, excelența vinului, sau din orice alt motiv.
 					</blockquote>
@@ -80,22 +69,11 @@ export default function Home() {
 						</div>
 						<div className='max-w-md text-center'>
 							<h3 className='font-semibold text-3xl leading-7'>{h.name}</h3>
-							<p className='italic text-xl'>{h.location}</p>
 							<p className='text-md text-muted-foreground mt-4'>{h.description}</p>
 						</div>
 					</div>
 				))}
 			</div>
-			<section className='my-16'>
-				<h1 className='text-2xl md:text-4xl font-semibold mb-4'>Descoperiți povestea fiecărui pahar de vin</h1>
-				<p className='text-lg'>
-					Fiecare etichetă spune o poveste unică, iar înțelegerea acestei povestiri este cheia spre adevăratul
-					privilegiu al cunoașterii vinurilor. Pentru cei ce încep această călătorie, Thewineshop devine
-					ghidul lor în lumea vinurilor de excepție, deschizând uși către rafinament și descoperire. În
-					sticlele noastre, veți găsi nu doar vin, ci povestea și pasiunea ce transformă fiecare degustare
-					într-o experiență memorabilă.
-				</p>
-			</section>
 		</>
 	);
 }

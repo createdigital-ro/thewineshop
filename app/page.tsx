@@ -61,6 +61,7 @@ export default function Home() {
 			<div className='my-8 flex flex-col '>
 				{hosues.map((h) => (
 					<div
+						key={h.name}
 						className={`my-4 flex flex-col ${
 							h.reversed ? 'lg:flex-row' : 'lg:flex-row-reverse'
 						} justify-between w-full items-center`}
@@ -88,7 +89,6 @@ export default function Home() {
 					într-o experiență memorabilă.
 				</p>
 			</section>
-
 			<Divider />
 		</main>
 	);

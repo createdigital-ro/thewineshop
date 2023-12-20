@@ -1,5 +1,9 @@
 const Navigation = () => {
-	return <div></div>;
+	return (
+		<nav>
+			<div></div>
+		</nav>
+	);
 };
 
-export default navigation
+export default Navigation;

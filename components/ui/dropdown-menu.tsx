@@ -199,7 +199,7 @@ const DropdownNavigation = ({
 			{houses.map(({ name }) => (
 				<DropdownMenuItem key={name}>
 					<SheetClose key={name} asChild>
-						<Link href={`/vinuri?house=${name}`}>{name}</Link>
+						<Link href={`/vinuri?house="${name}"`}>{name}</Link>
 					</SheetClose>
 				</DropdownMenuItem>
 			))}

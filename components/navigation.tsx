@@ -47,8 +47,8 @@ const Navigation = async () => {
 									/>
 								</Link>
 							</SheetClose>
-							<DropdownMenu className='text-3xl font-semibold'>
-								<DropdownMenuTrigger asChild className='flex items-center gap-1 text-2xl font-semibold'>
+							<DropdownMenu>
+								<DropdownMenuTrigger asChild className='flex items-center gap-1 text-3xl font-semibold'>
 									<span>
 										Crama <ChevronDown />
 									</span>

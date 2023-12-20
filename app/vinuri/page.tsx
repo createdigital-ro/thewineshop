@@ -20,7 +20,6 @@ const ShoppingPage = async () => {
 		"slug": slug.current
     	}`;
 	const wines: Wine[] = await client.fetch(query);
-	console.log(wines);
 
 	return (
 		<>

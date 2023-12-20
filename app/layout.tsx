@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang='ro'>
 			<body className={nunito.className}>
 				<Navigation />
-				{children}
+				<main className='max-w-6xl mx-auto px-8'>{children}</main>
 				<Footer />
 			</body>
 		</html>

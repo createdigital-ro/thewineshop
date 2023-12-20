@@ -63,54 +63,57 @@ export default function Footer() {
 		],
 	};
 	return (
-		<footer className='px-8 max-w-6xl my-8 mx-auto'>
-			<section className='flex flex-col items-center'>
-				<p className='font-semibold mb-2'>Suport clienți</p>
-				{contacts.map((c) => (
-					<div className='flex gap-2 hover:text-zinc-500 active:text-zinc-500'>
-						{c.icon}
-						<a href={c.href}>{c.placeholder}</a>
-					</div>
-				))}
-			</section>
-			<Divider />
-			<section className='sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] mx-auto'>
-				<div className='text-center md:text-left grid grid-cols-1 gap-8 sm:justify-items-around sm:grid-cols-2 md:grid-cols-4 '>
-					<div className='flex flex-col'>
-						<p className={titleStyles}>Magazinul meu</p>
-						{info.ourShop.map((o, index) => (
-							<Link key={index} href={o.link} className={linkStyles}>
-								{o.title}
-							</Link>
-						))}
-					</div>
+		<>
+			<footer className='px-8 max-w-6xl my-8 mx-auto'>
+				<Divider />
+				<section className='flex flex-col items-center'>
+					<p className='font-semibold mb-2'>Suport clienți</p>
+					{contacts.map((c) => (
+						<div className='flex gap-2 hover:text-zinc-500 active:text-zinc-500'>
+							{c.icon}
+							<a href={c.href}>{c.placeholder}</a>
+						</div>
+					))}
+				</section>
+				<Divider />
+				<section className='sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] mx-auto'>
+					<div className='text-center md:text-left grid grid-cols-1 gap-8 sm:justify-items-around sm:grid-cols-2 md:grid-cols-4 '>
+						<div className='flex flex-col'>
+							<p className={titleStyles}>Magazinul meu</p>
+							{info.ourShop.map((o, index) => (
+								<Link key={index} href={o.link} className={linkStyles}>
+									{o.title}
+								</Link>
+							))}
+						</div>
 
-					<div className='flex flex-col'>
-						<p className={titleStyles}>Clienți</p>
-						{info.clients.map((c, index) => (
-							<Link key={index} href={c.link} className={linkStyles}>
-								{c.title}
-							</Link>
-						))}
-					</div>
+						<div className='flex flex-col'>
+							<p className={titleStyles}>Clienți</p>
+							{info.clients.map((c, index) => (
+								<Link key={index} href={c.link} className={linkStyles}>
+									{c.title}
+								</Link>
+							))}
+						</div>
 
-					<div className='flex flex-col'>
-						<p className={titleStyles}>Socials</p>
-						{info.socials.map((s, index) => (
-							<Link key={index} href={s.link} className={linkStyles}>
-								{s.title}
-							</Link>
-						))}
+						<div className='flex flex-col'>
+							<p className={titleStyles}>Socials</p>
+							{info.socials.map((s, index) => (
+								<Link key={index} href={s.link} className={linkStyles}>
+									{s.title}
+								</Link>
+							))}
+						</div>
+						<Image
+							src='/tws_logo.svg'
+							alt='The Wine Shop logo'
+							width={100}
+							height={100}
+							className=' mx-auto lg:ml-auto'
+						/>
 					</div>
-					<Image
-						src='/tws_logo.svg'
-						alt='The Wine Shop logo'
-						width={100}
-						height={100}
-						className=' mx-auto lg:ml-auto'
-					/>
-				</div>
-			</section>
-		</footer>
+				</section>
+			</footer>
+		</>
 	);
 }

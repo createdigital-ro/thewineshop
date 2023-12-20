@@ -6,7 +6,7 @@ export default function Home() {
 	const hosues = [
 		{
 			imageUrl: '/home/homepage1.png',
-			imageAlt: "Image of Marchesi de' Cordano",
+			imageAlt: "Imagine logo Marchesi de' Cordano",
 			name: `Marchesi de' Cordano`,
 			location: 'Abruzzo, Italia',
 			reversed: false,
@@ -15,7 +15,7 @@ export default function Home() {
 		},
 		{
 			imageUrl: '/home/homepage2.png',
-			imageAlt: 'Image of Casa Di Terra',
+			imageAlt: 'Imagine logo Casa Di Terra',
 			name: 'Casa Di Terra',
 			location: 'Toscana, Italia',
 			reversed: true,
@@ -24,7 +24,7 @@ export default function Home() {
 		},
 	];
 	return (
-		<main className='max-w-6xl mx-auto px-8'>
+		<>
 			<Divider />
 			<section className='my-16'>
 				<h1 className='text-2xl md:text-4xl font-semibold mb-4'>Bine ați venit la TheWineShop</h1>
@@ -89,7 +89,6 @@ export default function Home() {
 					într-o experiență memorabilă.
 				</p>
 			</section>
-			<Divider />
-		</main>
+		</>
 	);
 }

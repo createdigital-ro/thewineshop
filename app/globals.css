@@ -55,6 +55,6 @@
 	}
 	body {
 		@apply text-foreground;
-		background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('/bg-body.jpg');
+		background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88));
 	}
 }

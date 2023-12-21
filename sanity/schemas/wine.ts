@@ -34,6 +34,11 @@ export default {
 			title: 'Slug',
 		},
 		{
+			name: 'recommended',
+			type: 'boolean',
+			title: 'Recommended',
+		},
+		{
 			name: 'houseRef',
 			title: 'Wine House',
 			type: 'reference',

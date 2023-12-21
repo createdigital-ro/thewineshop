@@ -1,7 +1,9 @@
 import { AddToCartButton } from '@/components/cart/ui';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { client } from '@/sanity/lib/client';
 import { Wine } from '@/types/sanity.data';
+import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -26,8 +28,21 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { house: string } 
 			description,
 			"imageUrl": image.asset->url
 			}`;
-	const house = await client.fetch(queryHouse);
-	console.log(house);
+	let house;
+	try {
+		house = await client.fetch(queryHouse);
+	} catch (err) {
+		return (
+			<div className='my-24 text-center'>
+				<XIcon className='w-24 h-24 text-primary mx-auto' />
+				<h1 className='text-3xl font-bold'>A aparut o eroare!</h1>
+				<Link href={'/'}>
+					<Button className='text-lg mt-4'>Inapoi Acasa</Button>
+				</Link>
+			</div>
+		);
+	}
+
 	return (
 		<>
 			{!searchParams.house ? (

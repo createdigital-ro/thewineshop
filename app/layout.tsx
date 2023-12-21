@@ -5,6 +5,9 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/Footer';
 import { CartProviderClient, ShoppingCartSheet } from '@/components/cart/ui';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
+
 const nunito = Nunito({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -21,6 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<main className='max-w-6xl mx-auto px-8'>{children}</main>
 					<ShoppingCartSheet />
 					<Footer />
+					<SpeedInsights />
+					<Analytics />
 				</CartProviderClient>
 			</body>
 		</html>

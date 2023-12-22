@@ -1,13 +1,19 @@
 import Divider from '@/components/Divider';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { getRecommended } from '@/lib/sanity';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
-import { AddToCartButton } from '@/components/cart/ui';
+import { prisma } from '@/prisma/client';
+import ProductItem from '@/components/products';
 
 export default async function Home() {
-	const recommendedWines = await getRecommended();
+	const recommendedWines = await prisma.wine.findMany({
+		where: {
+			recommended: true,
+		},
+		include: {
+			house: true,
+			collection: true,
+		},
+	});
 	return (
 		<>
 			<div className='mt-8'>
@@ -67,36 +73,7 @@ export default async function Home() {
 				<h3 className='text-3xl text-center font-semibold underline mb-8'>Recomandarile noastre</h3>
 				<section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 					{recommendedWines.map((wine) => {
-						return (
-							<div key={wine._id} className='bg-muted w-full shadow-md shadow-primary/5'>
-								<Link href={`/vinuri/${wine.slug}`} className=''>
-									<Image
-										placeholder='blur'
-										blurDataURL={wine.blurUrl}
-										src={wine.imageUrl}
-										alt={`Imagine pentru vinul ${wine.name}`}
-										width={300}
-										height={300}
-										loading={'eager'}
-										className='w-full'
-									/>
-								</Link>
-								<div className='p-4 relative '>
-									<Link href={`/vinuri/${wine.slug}`}>
-										<p className='text-2xl leading-5 mt-2'>{wine.name}</p>
-										<Badge className='uppercase text-xs absolute -top-3 right-2'>
-											{wine.collectionName}
-										</Badge>
-										<span className='text-sm uppercase'>{wine.houseName}</span>
-									</Link>
-
-									<div className='font-semibold pt-4 text-lg flex items-center justify-between'>
-										{wine.price} LEI
-										<AddToCartButton wine={wine} />
-									</div>
-								</div>
-							</div>
-						);
+						return <ProductItem key={wine.id} wine={wine} />;
 					})}
 				</section>
 				<Divider />

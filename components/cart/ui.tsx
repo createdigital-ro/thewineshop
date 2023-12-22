@@ -1,30 +1,27 @@
 'use client';
 
-import { Wine } from '@/types/sanity.data';
 import { MinusIcon, PlusIcon, ShoppingBasket, ShoppingCart, Trash2 } from 'lucide-react';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 
 import { CartProvider, useShoppingCart } from 'use-shopping-cart';
-import { Sheet, SheetContent, SheetDescription, SheetHeader } from '../ui/sheet';
+import { Sheet, SheetContent, SheetHeader } from '../ui/sheet';
 import { type Product } from 'use-shopping-cart/core';
 import { Button } from '../ui/button';
 import { AspectRatio } from '@radix-ui/react-aspect-ratio';
-import { ScrollArea } from '../ui/scroll-area';
+import { Wine } from '@prisma/client';
 
 const AddToCartButton = ({ wine }: { wine: Wine }) => {
 	const { addItem } = useShoppingCart();
-	console.log(wine.imageUrl);
 	const product: Product = {
 		name: wine.name,
-		id: wine._id,
+		id: wine.id,
 		price_id: wine.price_id,
 		price: wine.price * 100,
-		image: wine.imageUrl,
+		image: wine.image,
 		currency: 'RON',
 		description: 'boata',
 	};
-	console.log(product.image);
 	return (
 		<div
 			onClick={() => {

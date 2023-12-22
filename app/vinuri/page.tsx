@@ -1,48 +1,16 @@
-import { AddToCartButton } from '@/components/cart/ui';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { client } from '@/sanity/lib/client';
-import { Wine } from '@/types/sanity.data';
-import { XIcon } from 'lucide-react';
+import ProductItem from '@/components/products';
+import { prisma } from '@/prisma/client';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const revalidate = 60; // revalidate every 1 min
 
 const ShoppingPage = async ({ searchParams }: { searchParams: { house: string } }) => {
-	const queryAll = `*[_type == "wine"]{
-        _id,
-        name,
-        "imageUrl": image.asset->url,
-		"blurUrl": image.asset->.metadata.lqip,
-        "houseName": houseRef->name,
-        "collectionName": collectionRef->name,
-        year,
-        price,
-		"slug": slug.current
-    	}`;
-	const wines: Wine[] = await client.fetch(queryAll);
-
-	const queryHouse = `*[_type == "house" && name == ${searchParams.house}][0]{
-			name,
-			description,
-			"imageUrl": image.asset->url
-			}`;
-	let house;
-	try {
-		house = await client.fetch(queryHouse);
-	} catch (err) {
-		return (
-			<div className='my-24 text-center'>
-				<XIcon className='w-24 h-24 text-primary mx-auto' />
-				<h1 className='text-3xl font-bold'>A aparut o eroare!</h1>
-				<Link href={'/'}>
-					<Button className='text-lg mt-4'>Inapoi Acasa</Button>
-				</Link>
-			</div>
-		);
-	}
-
+	const wines = await prisma.wine.findMany({
+		include: {
+			house: true,
+			collection: true,
+		},
+	});
 	return (
 		<>
 			{!searchParams.house ? (
@@ -70,36 +38,7 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { house: string } 
 
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 				{wines.map((wine) => {
-					return (
-						<div key={wine._id} className='bg-muted w-full shadow-md shadow-primary/5'>
-							<Link href={`/vinuri/${wine.slug}`} className=''>
-								<Image
-									placeholder='blur'
-									blurDataURL={wine.blurUrl}
-									src={wine.imageUrl}
-									alt={`Imagine pentru vinul ${wine.name}`}
-									width={300}
-									height={300}
-									loading={'eager'}
-									className='w-full'
-								/>
-							</Link>
-							<div className='p-4 relative '>
-								<Link href={`/vinuri/${wine.slug}`}>
-									<p className='text-2xl leading-5 mt-2'>{wine.name}</p>
-									<Badge className='uppercase text-xs absolute -top-3 right-2'>
-										{wine.collectionName}
-									</Badge>
-									<span className='text-sm uppercase'>{wine.houseName}</span>
-								</Link>
-
-								<div className='font-semibold pt-4 text-lg flex items-center justify-between'>
-									{wine.price} LEI
-									<AddToCartButton wine={wine} />
-								</div>
-							</div>
-						</div>
-					);
+					return <ProductItem key={wine.id} wine={wine} />;
 				})}
 			</div>
 		</>

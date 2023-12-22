@@ -5,12 +5,10 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownNavigation } from '@/compone
 import { Sheet, SheetClose, SheetContent, SheetPortal, SheetTrigger } from '@/components/ui/sheet';
 import { client } from '@/sanity/lib/client';
 import { ShoppingCartComponent } from './cart/ui';
+import { prisma } from '@/prisma/client';
 
 const Navigation = async () => {
-	const query = `*[_type == "house"]{
-		name
-	}`;
-	const houses: { name: string }[] = await client.fetch(query);
+	const houses = await prisma.house.findMany();
 	return (
 		<nav className='px-8 py-4 flex items-center justify-between sticky right-0 top-0 w-full bg-white z-20'>
 			<Link href={'/'}>

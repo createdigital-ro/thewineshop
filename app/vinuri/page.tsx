@@ -11,6 +11,7 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { house: string } 
 			collection: true,
 		},
 	});
+	const hosue = searchParams.house;
 	return (
 		<>
 			{!searchParams.house ? (

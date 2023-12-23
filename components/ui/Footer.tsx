@@ -4,7 +4,7 @@ import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Footer() {
-	const linkStyles = 'text-[0.75rem] hover:text-zinc-500 active:text-zinc-500';
+	const linkStyles = 'text-[0.75rem] w-fit hover:text-zinc-500 active:text-zinc-500';
 	const titleStyles = 'font-semibold mb-1';
 	const contacts = [
 		{
@@ -21,8 +21,8 @@ export default function Footer() {
 	const info = {
 		ourShop: [
 			{
-				title: 'Despre noi',
-				link: '/despre',
+				title: 'Vinuri',
+				link: '/vinuri',
 			},
 			{
 				title: 'Termeni și Condiții',
@@ -39,8 +39,8 @@ export default function Footer() {
 		],
 		clients: [
 			{
-				title: 'Metode de Plata',
-				link: '/plati',
+				title: 'Contul meu',
+				link: '/contul-meu',
 			},
 			{
 				title: 'Politica de Retur ',
@@ -79,7 +79,7 @@ export default function Footer() {
 				<section className='sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] mx-auto'>
 					<div className='text-center md:text-left grid grid-cols-1 gap-8 sm:justify-items-around sm:grid-cols-2 md:grid-cols-4 '>
 						<div className='flex flex-col'>
-							<p className={titleStyles}>Magazinul meu</p>
+							<p className={titleStyles}>Magazin</p>
 							{info.ourShop.map((o, index) => (
 								<Link key={index} href={o.link} className={linkStyles}>
 									{o.title}
@@ -104,13 +104,24 @@ export default function Footer() {
 								</Link>
 							))}
 						</div>
-						<Image
-							src='/tws_logo.svg'
-							alt='The Wine Shop logo'
-							width={100}
-							height={100}
-							className=' mx-auto lg:ml-auto'
-						/>
+						<div className='flex flex-col gap-4'>
+							<Image
+								src='/tws_logo.svg'
+								alt='The Wine Shop logo'
+								width={100}
+								height={100}
+								className=' mx-auto lg:ml-auto'
+							/>
+							<Link href='https://anpc.ro/ce-este-sal/'>
+								<Image
+									src='/SAL-PICTOGRAMA.png'
+									alt='The Wine Shop logo'
+									width={170}
+									height={170}
+									className=' mx-auto lg:ml-auto'
+								/>
+							</Link>
+						</div>
 					</div>
 				</section>
 			</footer>

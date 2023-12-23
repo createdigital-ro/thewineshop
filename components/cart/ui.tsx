@@ -39,9 +39,13 @@ const ShoppingCartComponent = () => {
 	return (
 		<div onClick={() => handleCartClick()} className='relative cursor-pointer'>
 			<ShoppingCart />
-			<div className='absolute w-5 h-5 text-xs -top-2 select-none rounded-full -right-2 bg-primary text-primary-foreground text-center'>
-				<p className='flex items-center justify-center mt-0.5'>{Number(cartCount) < 10 ? cartCount : '9+'}</p>
-			</div>
+			{cartCount !== 0 && (
+				<div className='absolute w-5 h-5 text-xs -top-2 select-none rounded-full -right-2 bg-primary text-primary-foreground text-center'>
+					<p className='flex items-center justify-center mt-0.5'>
+						{Number(cartCount) < 10 ? cartCount : '9+'}
+					</p>
+				</div>
+			)}
 		</div>
 	);
 };

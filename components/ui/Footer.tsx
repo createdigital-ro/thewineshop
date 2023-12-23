@@ -25,12 +25,12 @@ export default function Footer() {
 				link: '/vinuri',
 			},
 			{
-				title: 'Termeni și Condiții',
-				link: '/termeni-si-conditii',
+				title: 'Politica de Cookies',
+				link: '/cookies',
 			},
 			{
 				title: 'Politica de Confidențialitate ',
-				link: '/politica-de-confidentialitate',
+				link: '/legal',
 			},
 			{
 				title: 'Contact',

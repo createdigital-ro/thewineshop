@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import { SheetClose, SheetPortal } from './sheet';
+import { House } from '@prisma/client';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -164,15 +165,7 @@ const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTML
 };
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
-const DropdownNavigation = ({
-	houses,
-	mobile,
-	...props
-}: {
-	houses: { name: string }[];
-	mobile: boolean;
-	props?: any;
-}) => {
+const DropdownNavigation = ({ houses, mobile, ...props }: { houses: House[]; mobile: boolean; props?: any }) => {
 	if (!mobile)
 		return (
 			<DropdownMenuContent className={cn({ ...props })}>
@@ -181,11 +174,15 @@ const DropdownNavigation = ({
 				</DropdownMenuItem>
 
 				<DropdownMenuSeparator />
-				{houses.map(({ name }) => (
+				{houses.map(({ id, name }) => (
 					<DropdownMenuItem key={name}>
-						<Link href={`/vinuri?house="${name}"`}>{name}</Link>
+						<Link href={`/vinuri?id=${id}`}>{name}</Link>
 					</DropdownMenuItem>
 				))}
+				<DropdownMenuSeparator />
+				<DropdownMenuItem>
+					<Link href={'/vinuri/investite'}>Investitie</Link>
+				</DropdownMenuItem>
 			</DropdownMenuContent>
 		);
 	return (
@@ -203,6 +200,10 @@ const DropdownNavigation = ({
 					</SheetClose>
 				</DropdownMenuItem>
 			))}
+			<DropdownMenuSeparator />
+			<SheetClose asChild>
+				<Link href={'/vinuri/investite'}>Investitie</Link>
+			</SheetClose>
 		</DropdownMenuContent>
 	);
 };

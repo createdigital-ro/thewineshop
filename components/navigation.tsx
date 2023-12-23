@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingCart, Search, ChevronDown, Menu, UserCircle } from 'lucide-react';
+import { Search, ChevronDown, Menu } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger, DropdownNavigation } from '@/components/ui/dropdown-menu';
-import { Sheet, SheetClose, SheetContent, SheetPortal, SheetTrigger } from '@/components/ui/sheet';
-import { client } from '@/sanity/lib/client';
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ShoppingCartComponent } from './cart/ui';
 import { prisma } from '@/prisma/client';
+import { UserDropdown } from './user/ui';
 
 const Navigation = async () => {
 	const houses = await prisma.house.findMany();
@@ -27,7 +27,7 @@ const Navigation = async () => {
 			</div>
 			<div className='flex gap-4'>
 				<ShoppingCartComponent />
-				<UserCircle />
+				<UserDropdown />
 				<Search />
 				<div className='flex gap-2'>
 					<Sheet>

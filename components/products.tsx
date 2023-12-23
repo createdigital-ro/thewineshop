@@ -1,18 +1,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import type { RecommendedWine, Wine } from '@/prisma/types';
-
 import { Badge } from '@/components/ui/badge';
 import { AddToCartButton } from '@/components/cart/ui';
+import { CompleteWine } from '@/prisma/zod';
 
-const ProductItem = ({ wine }: { wine: Wine | RecommendedWine }) => {
+const ProductItem = ({ wine }: { wine: CompleteWine }) => {
 	return (
 		<div key={wine.id} className='bg-muted w-full shadow-md shadow-primary/5'>
 			<Link href={`/vinuri/${wine.slug}`} className=''>
 				<Image
 					placeholder='empty'
-					src={''}
+					src={wine.image}
 					alt={`Imagine pentru vinul ${wine.name}`}
 					width={300}
 					height={300}

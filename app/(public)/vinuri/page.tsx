@@ -1,20 +1,22 @@
 import ProductItem from '@/components/products';
-import { prisma } from '@/prisma/client';
 import Image from 'next/image';
 
-export const revalidate = 60; // revalidate every 1 min
+import { prisma } from '@/prisma/client';
+import { redis } from '@/redis/init';
+import { CompleteWine } from '@/prisma/zod';
 
-const ShoppingPage = async ({ searchParams }: { searchParams: { house: string } }) => {
-	const wines = await prisma.wine.findMany({
-		include: {
-			house: true,
-			collection: true,
-		},
-	});
-	const hosue = searchParams.house;
+const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined } }) => {
+	const wines = (await redis.lrange('wines', 0, -1)) as CompleteWine[];
+	const house = searchParams.id
+		? await prisma.house.findUnique({
+				where: {
+					id: Number(searchParams.id),
+				},
+		  })
+		: '';
 	return (
 		<>
-			{!searchParams.house ? (
+			{!house ? (
 				<div className='my-8 font-semibold'>
 					<h1 className='text-3xl text-center pb-1'>Descopera sortimentele noastre de vin</h1>
 					<p className='text-lg text-center max-w-3xl mx-auto'>
@@ -26,7 +28,7 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { house: string } 
 			) : (
 				<div className='my-8 font-semibold'>
 					<Image
-						src={house.imageUrl}
+						src={''}
 						alt={`Imagine pentru via ${house.name}`}
 						width={800}
 						height={800}

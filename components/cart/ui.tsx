@@ -9,10 +9,10 @@ import { Sheet, SheetContent, SheetHeader } from '../ui/sheet';
 import { type Product } from 'use-shopping-cart/core';
 import { Button } from '../ui/button';
 import { AspectRatio } from '@radix-ui/react-aspect-ratio';
-import { Wine } from '@prisma/client';
+import { CompleteWine } from '@/prisma/zod';
 
-const AddToCartButton = ({ wine }: { wine: Wine }) => {
-	const { addItem } = useShoppingCart();
+const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
+	const { addItem, clearCart } = useShoppingCart();
 	const product: Product = {
 		name: wine.name,
 		id: wine.id,

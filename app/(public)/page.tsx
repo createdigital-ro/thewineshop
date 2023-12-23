@@ -1,19 +1,12 @@
-import Divider from '@/components/Divider';
+import Divider from '@/components/ui/Divider';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
-import { prisma } from '@/prisma/client';
 import ProductItem from '@/components/products';
+import { redis } from '@/redis/init';
+import { CompleteWine } from '@/prisma/zod';
 
 export default async function Home() {
-	const recommendedWines = await prisma.wine.findMany({
-		where: {
-			recommended: true,
-		},
-		include: {
-			house: true,
-			collection: true,
-		},
-	});
+	const recommendedWines = (await redis.lrange('recommended_wines', 0, -1)) as CompleteWine[];
 	return (
 		<>
 			<div className='mt-8'>

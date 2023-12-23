@@ -4,6 +4,8 @@ import Image from 'next/image';
 import ProductItem from '@/components/products';
 import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
+import RecommendedCarousel from '@/components/RecommendedCarousel';
+
 
 export default async function Home() {
 	const recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];
@@ -64,10 +66,8 @@ export default async function Home() {
 					</div>
 				</div>
 				<h3 className='text-3xl text-center font-semibold underline mb-8'>Recomandarile noastre</h3>
-				<section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-					{recommendedWines.map((wine) => {
-						return <ProductItem key={wine.id} wine={wine} />;
-					})}
+				<section className='max-w-[230px] md:max-w-[600px] lg:max-w-[800px] mx-auto'>
+					<RecommendedCarousel recommendedWines={recommendedWines}/>
 				</section>
 				<Divider />
 				<div className={`my-4 flex flex-col lg:flex-row-reverse justify-between w-full items-center`}>

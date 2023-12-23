@@ -18,7 +18,7 @@ import { TWSUserMetadata } from '@/clerk/user';
 const UserDropdown = () => {
 	const { signOut, redirectToSignUp } = useClerk();
 	const { isLoaded, user, isSignedIn } = useUser();
-	const publicMetadata: TWSUserMetadata = user?.publicMetadata;
+	const publicMetadata: any = user?.publicMetadata;
 	const router = useRouter();
 	if (!isLoaded) return <div className='animate-spin border-y-2 border-primary w-6 h-6 rounded-full' />;
 	return (

@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const user = await currentUser();
-	const userMetadata: TWSUserMetadata | undefined = user?.publicMetadata;
+	const userMetadata: any = user?.publicMetadata;
 	if (userMetadata?.roles?.editor && user?.id)
 		return (
 			<>

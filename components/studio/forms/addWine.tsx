@@ -20,12 +20,11 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Collection, House } from '@prisma/client';
 
 import { toast } from 'sonner';
 import { UploadButton } from '../upload/ui';
-import { XIcon } from 'lucide-react';
 import { useState } from 'react';
+import { Collection, House } from '@prisma/client';
 
 export function FormAddWine({ houses, collections }: { houses: House[]; collections: Collection[] }) {
 	const [fileKey, setFileKey] = useState('');

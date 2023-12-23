@@ -1,3 +1,4 @@
+import { TWSUserMetadata } from '@/clerk/user';
 import { Toaster } from '@/components/ui/sonner';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
@@ -9,8 +10,8 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	const user = await currentUser();
-	const userMetadata = user?.publicMetadata;
-	if (userMetadata?.roles.editor && user?.id)
+	const userMetadata: TWSUserMetadata | undefined = user?.publicMetadata;
+	if (userMetadata?.roles?.editor && user?.id)
 		return (
 			<>
 				{children}

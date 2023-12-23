@@ -6,7 +6,7 @@ import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 
 export default async function Home() {
-	const recommendedWines = (await redis.lrange('recommended_wines', 0, -1)) as CompleteWine[];
+	const recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];
 	return (
 		<>
 			<div className='mt-8'>

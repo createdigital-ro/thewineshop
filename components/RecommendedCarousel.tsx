@@ -26,7 +26,7 @@ const RecommendedCarousel = ({
     >
       <CarouselContent>
         {recommendedWines.map((w, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <ProductItem wine={w}></ProductItem>
           </CarouselItem>
         ))}

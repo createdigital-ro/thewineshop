@@ -22,15 +22,15 @@ export default function Footer() {
 		ourShop: [
 			{
 				title: 'Despre noi',
-				link: '/despre',
+				link: '/povestea-noastra',
 			},
 			{
-				title: 'Termeni și Condiții',
-				link: '/termeni-si-conditii',
+				title: 'Politica de Cookies',
+				link: '/cookies',
 			},
 			{
 				title: 'Politica de Confidențialitate ',
-				link: '/politica-de-confidentialitate',
+				link: '/legal',
 			},
 			{
 				title: 'Contact',

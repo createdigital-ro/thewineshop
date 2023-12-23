@@ -4,9 +4,24 @@ import Image from 'next/image';
 import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 import RecommendedCarousel from '@/components/RecommendedCarousel';
+import { prisma } from '@/prisma/client';
 
 export default async function Home() {
-	const recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];
+	let recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];
+	console.log('nonprisma req');
+	if (recommendedWines.length === 0) {
+		console.log('prisma req');
+		recommendedWines = (await prisma.wine.findMany({
+			where: {
+				recommended: true,
+			},
+			include: {
+				house: true,
+				collection: true,
+			},
+		})) as CompleteWine[];
+		await redis.lpush('recommended_wines', ...recommendedWines);
+	}
 	return (
 		<>
 			<div className='mt-8'>

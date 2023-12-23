@@ -6,7 +6,18 @@ import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 
 const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined } }) => {
-	const wines = (await redis.lrange('wines', 0, -1)) as CompleteWine[];
+	let wines = (await redis.lrange('wines', 0, -1)) as CompleteWine[];
+	console.log('nonprisma req');
+	if (wines.length === 0) {
+		console.log('prisma req');
+		wines = (await prisma.wine.findMany({
+			include: {
+				house: true,
+				collection: true,
+			},
+		})) as CompleteWine[];
+		await redis.lpush('wines', ...wines);
+	}
 	const house = searchParams.id
 		? await prisma.house.findUnique({
 				where: {

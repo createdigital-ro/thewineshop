@@ -193,10 +193,10 @@ const DropdownNavigation = ({ houses, mobile, ...props }: { houses: House[]; mob
 				</SheetClose>
 			</DropdownMenuItem>
 			<DropdownMenuSeparator />
-			{houses.map(({ name }) => (
+			{houses.map(({ id, name }) => (
 				<DropdownMenuItem key={name}>
 					<SheetClose key={name} asChild>
-						<Link href={`/vinuri?house="${name}"`}>{name}</Link>
+						<Link href={`/vinuri?id=${id}"`}>{name}</Link>
 					</SheetClose>
 				</DropdownMenuItem>
 			))}

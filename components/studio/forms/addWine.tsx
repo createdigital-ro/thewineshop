@@ -20,12 +20,15 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Collection, House } from '@prisma/client';
 
 import { toast } from 'sonner';
 import { UploadButton } from '../upload/ui';
+import { useState } from 'react';
+import { Collection, House } from '@prisma/client';
 
 export function FormAddWine({ houses, collections }: { houses: House[]; collections: Collection[] }) {
+	const [fileKey, setFileKey] = useState('');
+
 	const form = useForm<z.infer<typeof WineModel>>({
 		resolver: zodResolver(WineModel),
 		defaultValues: {
@@ -40,7 +43,6 @@ export function FormAddWine({ houses, collections }: { houses: House[]; collecti
 	});
 
 	async function submitHandle(data: z.infer<typeof WineModel>) {
-		console.log(data);
 		toast.loading('Loading...');
 		const res = await fetch('/api/wine/upload', { method: 'POST', body: JSON.stringify(data) });
 		const resText = await res.json();
@@ -98,17 +100,22 @@ export function FormAddWine({ houses, collections }: { houses: House[]; collecti
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Image</FormLabel>
-							<Image
-								src={field.value}
-								className='w-24 h-24 text-center mx-auto'
-								width={200}
-								height={200}
-								alt='Uploaded Image'
-							/>
+							{field.value && (
+								<Image
+									src={field.value}
+									className='w-full h-32 object-cover text-center mx-auto bg-muted rounded-md'
+									width={200}
+									height={200}
+									alt='Uploaded image'
+								/>
+							)}
+
 							<UploadButton
 								endpoint='imageUploader'
 								onClientUploadComplete={(res) => {
-									form.setValue('image', res[0].serverData.fileUrl);
+									const file = res[0].serverData;
+									form.setValue('image', file.fileUrl);
+									setFileKey(file.key);
 								}}
 								onUploadError={(error: Error) => {
 									// Do something with the error.

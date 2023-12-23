@@ -10,13 +10,15 @@ import {
 	DropdownMenuSeparator,
 } from '../ui/dropdown-menu';
 import Link from 'next/link';
-import { User, LogOut, UserCircle } from 'lucide-react';
+import { User, LogOut, UserCircle, ArchiveRestore } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AvatarFallback } from '@radix-ui/react-avatar';
+import { TWSUserMetadata } from '@/clerk/user';
 
 const UserDropdown = () => {
 	const { signOut, redirectToSignUp } = useClerk();
 	const { isLoaded, user, isSignedIn } = useUser();
+	const publicMetadata: any = user?.publicMetadata;
 	const router = useRouter();
 	if (!isLoaded) return <div className='animate-spin border-y-2 border-primary w-6 h-6 rounded-full' />;
 	return (
@@ -40,6 +42,17 @@ const UserDropdown = () => {
 								Contul meu
 							</DropdownMenuLabel>
 						</Link>
+						{publicMetadata.roles?.editor && (
+							<>
+								<DropdownMenuSeparator />
+								<Link href='/studio'>
+									<DropdownMenuLabel className='text-md font-medium flex gap-1 items-center'>
+										<ArchiveRestore className='w-4 h-4' />
+										Studio
+									</DropdownMenuLabel>
+								</Link>
+							</>
+						)}
 						<DropdownMenuSeparator />
 						<DropdownMenuLabel
 							onClick={() => signOut(() => router.push('/'))}

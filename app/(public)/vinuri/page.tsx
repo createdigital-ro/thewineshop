@@ -6,7 +6,18 @@ import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 
 const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined } }) => {
-	const wines = (await redis.lrange('wines', 0, -1)) as CompleteWine[];
+	let wines = (await redis.lrange('wines', 0, -1)) as CompleteWine[];
+	console.log('nonprisma req');
+	if (wines.length === 0) {
+		console.log('prisma req');
+		wines = (await prisma.wine.findMany({
+			include: {
+				house: true,
+				collection: true,
+			},
+		})) as CompleteWine[];
+		await redis.lpush('wines', ...wines);
+	}
 	const house = searchParams.id
 		? await prisma.house.findUnique({
 				where: {
@@ -41,7 +52,10 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 				{wines.map((wine) => {
-					return <ProductItem key={wine.id} wine={wine} />;
+					if (searchParams.id && wine.house.id == searchParams.id)
+						return <ProductItem key={wine.id} wine={wine} />;
+
+					if (!searchParams.id) return <ProductItem key={wine.id} wine={wine} />;
 				})}
 			</div>
 		</>

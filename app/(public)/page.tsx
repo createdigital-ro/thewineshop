@@ -1,14 +1,27 @@
 import Divider from '@/components/ui/Divider';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
-import ProductItem from '@/components/products';
 import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 import RecommendedCarousel from '@/components/RecommendedCarousel';
-
+import { prisma } from '@/prisma/client';
 
 export default async function Home() {
-	const recommendedWines = (await redis.lrange('recommended_wines', 0, -1)) as CompleteWine[];
+	let recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];
+	console.log('nonprisma req');
+	if (recommendedWines.length === 0) {
+		console.log('prisma req');
+		recommendedWines = (await prisma.wine.findMany({
+			where: {
+				recommended: true,
+			},
+			include: {
+				house: true,
+				collection: true,
+			},
+		})) as CompleteWine[];
+		await redis.lpush('recommended_wines', ...recommendedWines);
+	}
 	return (
 		<>
 			<div className='mt-8'>
@@ -66,9 +79,7 @@ export default async function Home() {
 					</div>
 				</div>
 				<h3 className='text-3xl text-center font-semibold underline mb-8'>Recomandarile noastre</h3>
-				<section className='max-w-[230px] md:max-w-[600px] lg:max-w-[800px] mx-auto'>
-					<RecommendedCarousel recommendedWines={recommendedWines}/>
-				</section>
+				<RecommendedCarousel recommendedWines={recommendedWines} />
 				<Divider />
 				<div className={`my-4 flex flex-col lg:flex-row-reverse justify-between w-full items-center`}>
 					<div className='w-full max-w-xl'>

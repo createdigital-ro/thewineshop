@@ -28,7 +28,7 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 			) : (
 				<div className='my-8 font-semibold'>
 					<Image
-						src={''}
+						src={house.image}
 						alt={`Imagine pentru via ${house.name}`}
 						width={800}
 						height={800}

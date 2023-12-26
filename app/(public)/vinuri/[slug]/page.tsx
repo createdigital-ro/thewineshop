@@ -7,7 +7,7 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
   const currentYear = new Date().getFullYear();
 
   const getML = (r: string) => {
-	let strWithDot = r.replace(",", ".")
+    let strWithDot = r.replace(",", ".");
     return parseFloat(strWithDot) * 1000.0;
   };
 
@@ -21,10 +21,22 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
     },
   });
 
+  let yearsTag;
+  if (currentYear - wine?.year > 1) {
+    yearsTag = "ani";
+  } else if (currentYear - wine?.year === 1) {
+    yearsTag = " an";
+  } else {
+    yearsTag = null;
+  }
+
   const caracteristics = [
     {
       title: "Vechime",
-      carac: currentYear - wine?.year + " ani",
+      carac:
+        currentYear - wine?.year > 0
+          ? currentYear - wine?.year + `${yearsTag}`
+          : "",
     },
     {
       title: "Casa",
@@ -59,14 +71,16 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
         <div className="grid grid-cols-2 my-8 gap-4">
           {caracteristics.map((c, index) => (
             <div key={index} className="leading-5 text-left mx-auto">
-              <p className="font-bold text-[1.25rem] sm:text-2xl">{c.title}</p>
-              <p className="text-zinc-600 font-semibold sm:text-[1.1rem]">
+              <p className="font-bold text-[1.25rem] sm:text-2xl max-w-[200px]">
+                {c.title}
+              </p>
+              <p className="text-zinc-600 font-semibold sm:text-[1.1rem] max-w-[200px]">
                 {c.carac}
               </p>
             </div>
           ))}
         </div>
-		<Divider />
+        <Divider />
         <div className="px-10">
           <p className="text-2xl font-semibold mb-1 sm:text-3xl">
             {wine?.price} RON

@@ -78,16 +78,16 @@ export default function Footer() {
 				<Divider />
 				<section className='sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] mx-auto'>
 					<div className='text-center md:text-left grid grid-cols-1 gap-8 sm:justify-items-around sm:grid-cols-2 md:grid-cols-4 '>
-						<div className='flex flex-col'>
+						<div className='flex flex-col items-center md:items-start'>
 							<p className={titleStyles}>Magazin</p>
 							{info.ourShop.map((o, index) => (
-								<Link key={index} href={o.link} className={linkStyles}>
+								<Link key={index} href={o.link} className={`${linkStyles} text-center`}>
 									{o.title}
 								</Link>
 							))}
 						</div>
 
-						<div className='flex flex-col'>
+						<div className='flex flex-col items-center md:items-start'>
 							<p className={titleStyles}>Clienți</p>
 							{info.clients.map((c, index) => (
 								<Link key={index} href={c.link} className={linkStyles}>
@@ -96,7 +96,7 @@ export default function Footer() {
 							))}
 						</div>
 
-						<div className='flex flex-col'>
+						<div className='flex flex-col items-center md:items-start'>
 							<p className={titleStyles}>Socials</p>
 							{info.socials.map((s, index) => (
 								<Link key={index} href={s.link} className={linkStyles}>

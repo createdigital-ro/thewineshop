@@ -51,7 +51,10 @@ export function FormAddWine({ houses, collections }: { houses: House[]; collecti
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(submitHandle)} className='space-y-6'>
+			<form
+				onSubmit={form.handleSubmit(submitHandle)}
+				className='grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+			>
 				<FormField
 					control={form.control}
 					name='name'

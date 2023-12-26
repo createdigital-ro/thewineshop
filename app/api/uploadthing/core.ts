@@ -7,9 +7,10 @@ export const CoreFileRouter = {
 	imageUploader: f({ image: { maxFileSize: '16MB' } })
 		.middleware(async ({ req }) => {
 			const user = await currentUser();
-			if (!user) throw new Error('Unauthorized');
+			const userMetadata: any = user?.publicMetadata;
+			if (!userMetadata.roles.editor) throw new Error('Unauthorized');
 
-			return {};
+			return { authorized: false };
 		})
 		.onUploadComplete(async ({ file }) => {
 			return { key: file.key, fileUrl: file.url };

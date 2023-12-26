@@ -20,15 +20,19 @@ model Wine {
   id           Int        @id @default(autoincrement())
   name         String     @db.Text
   price        Int
-  price_id     String
+  price_id     String?
   image        String     @db.MediumText
   year         Int
   slug         String
-  recommended  Boolean
+  recommended  Boolean    @default(false)
+  quantity     Int
+  litres       String
   house        House      @relation(fields: [houseId], references: [id])
   houseId      Int
   collection   Collection @relation(fields: [collectionId], references: [id])
   collectionId Int
+
+  @@index([houseId])
 }
 
 model House {

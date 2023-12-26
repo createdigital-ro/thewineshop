@@ -10,7 +10,7 @@ import { UserDropdown } from './user/ui';
 const Navigation = async () => {
 	const houses = await prisma.house.findMany();
 	return (
-		<nav className='px-8 py-4 flex items-center justify-between sticky right-0 top-0 w-full bg-white z-20'>
+		<nav className='px-8 py-4 flex items-center justify-between sticky right-0 top-0 w-full bg-white z-50'>
 			<Link href={'/'}>
 				<Image src={'/tws_logo.svg'} height={50} width={80} alt='TheWineShop Logo' />
 			</Link>

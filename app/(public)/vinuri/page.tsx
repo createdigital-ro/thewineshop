@@ -2,29 +2,22 @@ import ProductItem from '@/components/products';
 import Image from 'next/image';
 
 import { prisma } from '@/prisma/client';
-import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 
 const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined } }) => {
-	let wines = (await redis.lrange('wines', 0, -1)) as CompleteWine[];
-	console.log('nonprisma req');
-	if (wines.length === 0) {
-		console.log('prisma req');
-		wines = (await prisma.wine.findMany({
-			include: {
-				house: true,
-				collection: true,
+	let wines = (await prisma.wine.findMany({
+		include: {
+			house: true,
+			collection: true,
+		},
+	})) as CompleteWine[];
+	const house =
+		searchParams.id &&
+		(await prisma.house.findUnique({
+			where: {
+				id: Number(searchParams.id),
 			},
-		})) as CompleteWine[];
-		await redis.lpush('wines', ...wines);
-	}
-	const house = searchParams.id
-		? await prisma.house.findUnique({
-				where: {
-					id: Number(searchParams.id),
-				},
-		  })
-		: '';
+		}));
 	return (
 		<>
 			{!house ? (
@@ -38,13 +31,15 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 				</div>
 			) : (
 				<div className='my-8 font-semibold'>
-					<Image
-						src={house.image}
-						alt={`Imagine pentru via ${house.name}`}
-						width={800}
-						height={800}
-						className='rounded mx-auto mb-8'
-					/>
+					{house.image && (
+						<Image
+							src={house.image}
+							alt={`Imagine pentru via ${house?.name}`}
+							width={800}
+							height={800}
+							className='rounded mx-auto mb-8'
+						/>
+					)}
 					<h1 className='text-3xl text-center pb-1'>{house.name}</h1>
 					<p className='text-lg text-center max-w-3xl mx-auto'>{house.description}</p>
 				</div>

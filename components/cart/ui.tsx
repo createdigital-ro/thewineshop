@@ -10,9 +10,10 @@ import { type Product } from 'use-shopping-cart/core';
 import { Button } from '../ui/button';
 import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 import { CompleteWine } from '@/prisma/zod';
+import { toast } from 'sonner';
 
 const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
-	const { addItem, clearCart } = useShoppingCart();
+	const { addItem } = useShoppingCart();
 	const product: Product = {
 		name: wine.name,
 		id: wine.id,
@@ -26,6 +27,7 @@ const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
 		<div
 			onClick={() => {
 				addItem(product, { count: 1 });
+				toast.success(`${product.name} a fost adaugat cu succes`);
 			}}
 			className='p-1 bg-primary text-primary-foreground rounded cursor-pointer'
 		>
@@ -74,7 +76,7 @@ const ShoppingCartSheet = () => {
 							return (
 								<div key={product.id} className='w-full bg-muted rounded p-4 my-2 first:mt-0 last:mb-0'>
 									<div className='flex gap-3 h-full'>
-										<div className='w-[130px]'>
+										<div className='w-[130px] bg-neutral-200/80 rounded p-2'>
 											<AspectRatio ratio={1 / 1}>
 												<Image
 													fill
@@ -89,7 +91,7 @@ const ShoppingCartSheet = () => {
 										<div className='flex flex-col w-full'>
 											<div className='flex'>
 												<div>
-													<p className='text-xl leading-3 font-bold'>{product.name}</p>
+													<p className='text-xl leading-5 font-bold'>{product.name}</p>
 													<span className='text-sm text-muted-foreground'>
 														{product.formattedValue}
 													</span>

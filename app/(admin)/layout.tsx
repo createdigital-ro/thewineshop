@@ -15,8 +15,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	if (userMetadata?.roles?.editor && user?.id)
 		return (
 			<>
-				<AdminNavigation />
-				<div className='grid grid-cols-2'>{children}</div>
+				<div className='grid grid-cols-5 gap-12 m-8'>
+					<div className='col-span-5 md:col-span-1'>
+						<AdminNavigation />
+					</div>
+					<div className='col-span-5 md:col-span-4'>{children}</div>
+				</div>
 				<Toaster richColors position='top-center' />
 			</>
 		);

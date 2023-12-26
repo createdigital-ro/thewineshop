@@ -8,9 +8,7 @@ import { prisma } from '@/prisma/client';
 
 export default async function Home() {
 	let recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];
-	console.log('nonprisma req');
 	if (recommendedWines.length === 0) {
-		console.log('prisma req');
 		recommendedWines = (await prisma.wine.findMany({
 			where: {
 				recommended: true,
@@ -19,8 +17,9 @@ export default async function Home() {
 				house: true,
 				collection: true,
 			},
+			take: 6,
 		})) as CompleteWine[];
-		await redis.lpush('recommended_wines', ...recommendedWines);
+		if (recommendedWines.length > 0) await redis.lpush('recommended_wines', ...recommendedWines);
 	}
 	return (
 		<>

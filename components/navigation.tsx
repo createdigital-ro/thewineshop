@@ -29,7 +29,7 @@ const Navigation = async () => {
 				<ShoppingCartComponent />
 				<UserDropdown />
 				<Search />
-				<div className='flex gap-2'>
+				<div className='flex gap-2 items-center'>
 					<Sheet>
 						<SheetTrigger className='block sm:hidden'>
 							<Menu className='' />

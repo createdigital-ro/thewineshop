@@ -24,6 +24,7 @@ const ProductItem = ({ wine }: { wine: CompleteWine }) => {
 							src={wine.image}
 							alt={`Imagine pentru vinul ${wine.name}`}
 							fill
+							sizes='(max-width: 768px) 80vw, (max-width: 1200px) 70vw, 60vw'
 							loading={'eager'}
 							className='w-full object-cover object-center'
 						/>

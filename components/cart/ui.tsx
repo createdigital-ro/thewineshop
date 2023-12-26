@@ -16,7 +16,7 @@ const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
 	const { addItem } = useShoppingCart();
 	const product: Product = {
 		name: wine.name,
-		price_id: wine.price_id,
+		price_id: wine.price_id as string,
 		price: wine.price * 100,
 		image: wine.image,
 		currency: 'RON',
@@ -26,7 +26,6 @@ const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
 		<div
 			onClick={() => {
 				addItem(product, { count: 1 });
-				// checkoutSingleItem(product.price_id);
 				toast.success(`${product.name} a fost adaugat cu succes`);
 			}}
 			className='p-1 bg-primary text-primary-foreground rounded cursor-pointer'
@@ -128,7 +127,7 @@ const ShoppingCartSheet = () => {
 						<span>{formattedTotalPrice}</span>
 					</div>
 					<span className='text-muted-foreground'>Livrarea si taxele sunt calculate la plata</span>
-					<Button className='my-6 mb-2 text-md' onClick={redirectToCheckout}>
+					<Button className='my-6 mb-2 text-md' onClick={() => redirectToCheckout()}>
 						Finalizeaza Plata
 					</Button>
 					<Button onClick={() => handleCartClick()} className='flex gap-1 items-center' variant={'outline'}>

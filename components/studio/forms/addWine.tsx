@@ -85,20 +85,6 @@ export function FormAddWine({ houses, collections }: { houses: House[]; collecti
 				/>
 				<FormField
 					control={form.control}
-					name='price_id'
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Stripe Id</FormLabel>
-							<FormControl>
-								<Input placeholder='Stripe Id' {...field} />
-							</FormControl>
-							<FormDescription>The stripe_id for the item</FormDescription>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
 					name='image'
 					render={({ field }) => (
 						<FormItem>

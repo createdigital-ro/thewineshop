@@ -16,7 +16,6 @@ const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
 	const { addItem } = useShoppingCart();
 	const product: Product = {
 		name: wine.name,
-		id: wine.id,
 		price_id: wine.price_id,
 		price: wine.price * 100,
 		image: wine.image,
@@ -27,6 +26,7 @@ const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
 		<div
 			onClick={() => {
 				addItem(product, { count: 1 });
+				// checkoutSingleItem(product.price_id);
 				toast.success(`${product.name} a fost adaugat cu succes`);
 			}}
 			className='p-1 bg-primary text-primary-foreground rounded cursor-pointer'
@@ -58,11 +58,12 @@ const ShoppingCartSheet = () => {
 		shouldDisplayCart,
 		cartDetails,
 		cartCount,
-		clearCart,
 		incrementItem,
 		decrementItem,
 		removeItem,
 		formattedTotalPrice,
+		redirectToCheckout,
+		checkoutSingleItem,
 	} = useShoppingCart();
 	return (
 		<Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
@@ -127,7 +128,7 @@ const ShoppingCartSheet = () => {
 						<span>{formattedTotalPrice}</span>
 					</div>
 					<span className='text-muted-foreground'>Livrarea si taxele sunt calculate la plata</span>
-					<Button className='my-6 mb-2 text-md' onClick={() => clearCart()}>
+					<Button className='my-6 mb-2 text-md' onClick={redirectToCheckout}>
 						Finalizeaza Plata
 					</Button>
 					<Button onClick={() => handleCartClick()} className='flex gap-1 items-center' variant={'outline'}>
@@ -146,8 +147,8 @@ const CartProviderClient = ({ children }: { children: ReactNode }) => {
 			mode='payment'
 			cartMode='client-only'
 			stripe={stripe_pk}
-			successUrl='http://localhost:3000'
-			cancelUrl='http://localhost:3000'
+			successUrl='http://localhost:3000/'
+			cancelUrl='http://localhost:3000/'
 			currency='RON'
 			shouldPersist={true}
 			allowedCountries={['RO']}

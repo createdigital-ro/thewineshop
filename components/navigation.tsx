@@ -15,13 +15,13 @@ const Navigation = async () => {
 					<span>
 						Website-ul este inca in <b>constructie</b>.
 					</span>
-					<span className='gap-1'>
+					<span className='gap-1 decoration-yellow-800'>
 						Pentru comenzi apleati{' '}
-						<Link className='underline font-bold' href='tel:+400722302000'>
+						<Link className='underline decoration-yellow-800 font-bold' href='tel:+400722302000'>
 							0722302000
 						</Link>{' '}
 						sau contactati-ne prin email la{' '}
-						<Link className='underline font-bold' href='mailto:office@thewineshop.ro'>
+						<Link className='underline decoration-yellow-800 font-bold' href='mailto:office@thewineshop.ro'>
 							office@thewineshop.ro
 						</Link>
 					</span>

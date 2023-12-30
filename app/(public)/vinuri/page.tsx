@@ -6,6 +6,13 @@ import { CompleteWine } from '@/prisma/zod';
 import PaginationComponent from '@/components/pagination';
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Vinuri - TheWineShop',
+	description:
+		'Explorați diversitatea noastră captivantă de vinuri pe pagina de vinuri TheWineShop. De la vinuri roșii robuste până la vinuri albe rafinate și spumante vibrante, gama noastră cuprinzătoare satisface orice palat. Alegeți din selecția noastră globală de vinuri, inclusiv soiuri rare și ediții limitate. Fiecare vin este descris detaliat pentru a vă ajuta în alegerea ideală. Cumpărături ușoare, informații experte și livrare rapidă. Descoperiți acum lumea vinurilor de excepție la TheWineShop!',
+};
 
 const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined; p: number } }) => {
 	const pages = Math.floor((await prisma.wine.count()) / 12);

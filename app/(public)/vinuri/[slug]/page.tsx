@@ -1,7 +1,4 @@
-import { AddToCartButton } from '@/components/cart/ui';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import Divider from '@/components/ui/Divider';
 import { prisma } from '@/prisma/client';
 import { CompleteWine } from '@/prisma/zod';
 
@@ -39,7 +36,7 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 			carac: currentYear - wine?.year > 0 ? currentYear - wine?.year + `${yearsTag}` : '',
 		},
 		{
-			title: 'Casa',
+			title: 'Crama',
 			carac: wine?.house.name,
 		},
 		{

@@ -3,13 +3,28 @@ import Image from 'next/image';
 
 import { prisma } from '@/prisma/client';
 import { CompleteWine } from '@/prisma/zod';
+import PaginationComponent from '@/components/pagination';
+import { z } from 'zod';
+import { redirect } from 'next/navigation';
 
-const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined } }) => {
+const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined; p: number } }) => {
+	const pages = Math.floor((await prisma.wine.count()) / 12);
+	const zodParsedPage = z.coerce
+		.number()
+		.nonnegative()
+		.max(pages)
+		.catch(() => {
+			redirect('/vinuri');
+		})
+		.optional()
+		.parse(searchParams.p);
 	let wines = (await prisma.wine.findMany({
 		include: {
 			house: true,
 			collection: true,
 		},
+		skip: (zodParsedPage! * 12) | 0,
+		take: 12,
 	})) as CompleteWine[];
 	const house =
 		searchParams.id &&
@@ -53,6 +68,7 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 					if (!searchParams.id) return <ProductItem key={wine.id} wine={wine} />;
 				})}
 			</div>
+			<PaginationComponent page={searchParams.p | 0} totalPages={pages} />
 		</>
 	);
 };

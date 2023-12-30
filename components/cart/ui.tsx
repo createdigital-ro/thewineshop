@@ -62,7 +62,6 @@ const ShoppingCartSheet = () => {
 		removeItem,
 		formattedTotalPrice,
 		redirectToCheckout,
-		checkoutSingleItem,
 	} = useShoppingCart();
 	return (
 		<Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>

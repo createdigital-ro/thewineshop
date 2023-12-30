@@ -26,7 +26,7 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 
 	let yearsTag;
 	if (currentYear - wine?.year > 1) {
-		yearsTag = 'ani';
+		yearsTag = ' ani';
 	} else if (currentYear - wine?.year === 1) {
 		yearsTag = ' an';
 	} else {
@@ -62,22 +62,14 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 				className='mx-auto w-[700px] h-full object-cover'
 			/>
 			<div className='md:pb-10'>
-				<h2 className='font-bold text-center my-8 text-2xl sm:text-3xl md:text-4xl'>{wine?.name}</h2>
-				<div className='grid grid-cols-2 my-8 gap-4'>
+				<h2 className='font-bold my-8 text-2xl sm:text-3xl md:text-4xl'>{wine?.name}</h2>
+				<div className='grid grid-cols-2 gap-4 text-left mx-none'>
 					{caracteristics.map((c, index) => (
-						<div key={index} className='leading-5 text-left mx-auto'>
-							<p className='font-bold text-[1.25rem] sm:text-2xl max-w-[200px]'>{c.title}</p>
+						<div key={index} className='leading-5 mx-auto w-full'>
+							<p className='font-bold text-lg sm:text-2xl max-w-[200px]'>{c.title}</p>
 							<p className='text-zinc-600 font-semibold sm:text-[1.1rem] max-w-[200px]'>{c.carac}</p>
 						</div>
 					))}
-				</div>
-				<Divider />
-				<div className='px-10'>
-					<p className='text-2xl font-semibold mb-1 sm:text-3xl'>{wine?.price} RON</p>
-					<div className='flex justify-between items-center'>
-						<Button className='font-bold text-[1.2rem]'>Cumpara</Button>
-						<AddToCartButton wine={wine} />
-					</div>
 				</div>
 			</div>
 		</div>

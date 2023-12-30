@@ -40,7 +40,6 @@ const ProductItem = ({ wine }: { wine: CompleteWine }) => {
 
 				<div className='font-semibold pt-4 mt-auto text-lg flex items-center justify-between'>
 					{wine.price} LEI
-					<AddToCartButton wine={wine} />
 				</div>
 			</div>
 		</div>

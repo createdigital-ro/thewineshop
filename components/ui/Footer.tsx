@@ -36,11 +36,11 @@ export default function Footer() {
 		socials: [
 			{
 				title: 'Facebook',
-				link: 'https://www.facebook.com',
+				link: 'https://www.facebook.com/profile.php?id=61554220394142',
 			},
 			{
 				title: 'Instagram',
-				link: 'https://www.instagram.com',
+				link: 'https://www.instagram.com/thewineshop.ro?igsh=ZGYzZWh5aHRiMXBq',
 			},
 		],
 	};

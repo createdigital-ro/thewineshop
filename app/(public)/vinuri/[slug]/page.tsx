@@ -68,6 +68,7 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 						</div>
 					))}
 				</div>
+				<p className='mt-16 text-xl'>{wine.price} LEI</p>
 			</div>
 		</div>
 	);

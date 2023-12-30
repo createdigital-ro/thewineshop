@@ -9,16 +9,18 @@ const Navigation = async () => {
 	const houses = await prisma.house.findMany();
 	return (
 		<>
-			<div className='p-4 bg-yellow-100 text-yellow-800 flex gap-2 items-center justify-center'>
-				<AlertTriangle />
+			<div className='p-4 bg-yellow-100 text-yellow-800 flex flex-col md:flex-row gap-2 items-center justify-center'>
+				<AlertTriangle className='mr-auto w-6 h-6 md:mr-0' />
 				<div className='flex flex-col text-sm font-semibold leading-4'>
-					<span>Website-ul este inca in constructie.</span>
-					<span className='flex gap-1'>
+					<span>
+						Website-ul este inca in <b>constructie</b>.
+					</span>
+					<span className='gap-1'>
 						Pentru comenzi apleati{' '}
 						<Link className='underline font-bold' href='tel:+400722302000'>
 							0722302000
-						</Link>
-						sau
+						</Link>{' '}
+						sau contactati-ne prin email la{' '}
 						<Link className='underline font-bold' href='mailto:office@thewineshop.ro'>
 							office@thewineshop.ro
 						</Link>

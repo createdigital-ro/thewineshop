@@ -87,7 +87,7 @@ const PoliticsPage = (props: Props) => {
       info: [
         `În unele cazuri speciale, folosim și cookie-uri furnizate de terțe părți de încredere. Secțiunea
           următoare detaliază ce cookie-uri terțe s-ar putea întâlni prin intermediul acestui site.`,
-        `- Google Analytics: Acest site utilizează Google Analytics, una dintre cele mai răspândite și de
+        `Google Analytics: Acest site utilizează Google Analytics, una dintre cele mai răspândite și de
           încredere soluții de analiză de pe web, pentru a ne ajuta să înțelegem modul în care utilizați
           site-ul și modalitățile în care putem îmbunătăți experiența dumneavoastră. Aceste cookie-uri
           pot urmări Informații precum timpul petrecut pe site și paginile vizitate, astfel încât să putem
@@ -104,21 +104,21 @@ const PoliticsPage = (props: Props) => {
           încât să putem continua să producem conținut captivant. Aceste cookie-uri pot urmări
           informații precum timpul petrecut pe site sau paginile vizitate, ceea ce ne ajută să înțelegem
           cum putem îmbunătăți site-ul pentru dumneavoastră.`,
-        `- Cookie-uri pentru teste: Din când în când, testăm caracteristici noi și facem modificări subtile la modul
+        `Cookie-uri pentru teste: Din când în când, testăm caracteristici noi și facem modificări subtile la modul
           în care site-ul este livrat. Atunci când încă testăm caracteristici noi, aceste cookie-uri pot fi folosite
           pentru a vă asigura că primiți o experiență consecventă pe site, garantând în același timp că înțelegem
           care sunt optimizările apreciate cel mai mult de către utilizatori.`,
-        `- Cookie-uri pentru publicitate comportamentală: Folosim reclame pentru a compensa costurile de
+        `Cookie-uri pentru publicitate comportamentală: Folosim reclame pentru a compensa costurile de
           funcționare ale acestui site și pentru a finanța dezvoltări ulterioare. Cookie-urile pentru publicitate
           comportamentală folosite de acest site sunt concepute pentru a vă furniza cele mai relevante reclame
           posibile prin urmărirea anonimă a intereselor dumneavoastră și prezentând lucruri similare care ar putea
           să vă intereseze.`,
-        `- Cookie-uri de urmărire a afiliaților: Mai mulți parteneri fac publicitate în numele nostru, iar cookie-urile
+        `Cookie-uri de urmărire a afiliaților: Mai mulți parteneri fac publicitate în numele nostru, iar cookie-urile
           de urmărire a afiliaților ne permit pur și simplu să vedem dacă clienții noștri au ajuns pe site prin
           intermediul unuia dintre site-urile partenerilor noștri, astfel încât să-i putem credita în mod
           corespunzător și, dacă este cazul, să le permitem partenerilor noștri de afiliere să ofere orice bonus pe
           care l-ar putea oferi pentru o achiziție.`,
-        `- Butoane și/sau plugin-uri pentru rețelele de socializare: Utilizăm butoane și/sau plugin-uri pentru
+        `Butoane și/sau plugin-uri pentru rețelele de socializare: Utilizăm butoane și/sau plugin-uri pentru
           rețelele de socializare pe acest site, care vă permit să vă conectați cu rețeaua dumneavoastră socială în
           diverse moduri. Pentru ca acestea să funcționeze, rețele de socializare vor seta cookie-uri prin
           intermediul site-ului nostru, care pot fi folosite pentru a îmbunătăți profilul dumneavoastră pe site-ul lor

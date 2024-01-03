@@ -5,6 +5,13 @@ import { redis } from '@/redis/init';
 import { CompleteWine } from '@/prisma/zod';
 import RecommendedCarousel from '@/components/RecommendedCarousel';
 import { prisma } from '@/prisma/client';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: 'Bine ati venit - TheWineShop',
+	description:
+		'Descoperă sticla perfectă la TheWineShop - destinația ta online de top pentru o selecție rafinată de vinuri din întreaga lume. Explorează colecția noastră aleasă de vinuri roșii, albe, roz și spumante, fiecare selectat cu grijă pentru calitate și aromă. Fie că ești un cunoscător sau nou în lumea vinului, găsește vinuri excepționale și rarități care să îmbunătățească masa ta următoare sau ocazia specială. Bucură-te de cumpărături ușoare, sfaturi de la experți și livrare convenabilă direct la ușa ta. Gustă lumea cu TheWineShop.',
+};
 
 export default async function Home() {
 	let recommendedWines = (await redis.lrange('recommended_wines', 0, 5)) as CompleteWine[];

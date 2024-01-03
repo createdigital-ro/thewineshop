@@ -4,18 +4,18 @@ import { Mail, Phone } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Footer() {
-	const linkStyles = 'text-[0.75rem] w-fit hover:text-zinc-500 active:text-zinc-500';
+	const linkStyles = 'text-xs mx-auto md:mx-0 w-fit hover:text-zinc-500 active:text-zinc-500';
 	const titleStyles = 'font-semibold mb-1';
 	const contacts = [
 		{
-			href: 'tel:0700000000',
+			href: 'tel:+400722302000',
 			icon: <Phone className='w-4' />,
-			placeholder: '0700 000 000',
+			placeholder: '0722 302 000',
 		},
 		{
-			href: 'mailto:contact@thewineshop.ro',
+			href: 'mailto:office@thewineshop.ro',
 			icon: <Mail className='w-4' />,
-			placeholder: 'contact@thewineshop.ro',
+			placeholder: 'office@thewineshop.ro',
 		},
 	];
 	const info = {
@@ -32,33 +32,15 @@ export default function Footer() {
 				title: 'Politica de Confidențialitate ',
 				link: '/legal',
 			},
-			{
-				title: 'Contact',
-				link: '/contact',
-			},
-		],
-		clients: [
-			{
-				title: 'Contul meu',
-				link: '/contul-meu',
-			},
-			{
-				title: 'Politica de Retur ',
-				link: '/politica-de-retur',
-			},
-			{
-				title: 'Garanția Produselor ',
-				link: '/garantie',
-			},
 		],
 		socials: [
 			{
 				title: 'Facebook',
-				link: 'https://www.facebook.com',
+				link: 'https://www.facebook.com/profile.php?id=61554220394142',
 			},
 			{
 				title: 'Instagram',
-				link: 'https://www.instagram.com',
+				link: 'https://www.instagram.com/thewineshop.ro?igsh=ZGYzZWh5aHRiMXBq',
 			},
 		],
 	};
@@ -77,8 +59,8 @@ export default function Footer() {
 				</section>
 				<Divider />
 				<section className='sm:max-w-[500px] md:max-w-[800px] lg:max-w-[1000px] mx-auto'>
-					<div className='text-center md:text-left grid grid-cols-1 gap-8 sm:justify-items-around sm:grid-cols-2 md:grid-cols-4 '>
-						<div className='flex flex-col items-center md:items-start'>
+					<div className='text-center md:text-left grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:justify-items-around '>
+						<div className='flex flex-col'>
 							<p className={titleStyles}>Magazin</p>
 							{info.ourShop.map((o, index) => (
 								<Link key={index} href={o.link} className={`${linkStyles} text-center`}>
@@ -87,14 +69,14 @@ export default function Footer() {
 							))}
 						</div>
 
-						<div className='flex flex-col items-center md:items-start'>
+						{/* <div className='flex flex-col'>
 							<p className={titleStyles}>Clienți</p>
 							{info.clients.map((c, index) => (
 								<Link key={index} href={c.link} className={linkStyles}>
 									{c.title}
 								</Link>
 							))}
-						</div>
+						</div> */}
 
 						<div className='flex flex-col items-center md:items-start'>
 							<p className={titleStyles}>Socials</p>
@@ -104,7 +86,7 @@ export default function Footer() {
 								</Link>
 							))}
 						</div>
-						<div className='flex flex-col gap-4'>
+						<div className='flex flex-col gap-4 col-span-full md:col-span-2'>
 							<Image
 								src='/tws_logo.svg'
 								alt='The Wine Shop logo'

@@ -10,6 +10,7 @@ export default authMiddleware({
 		'/studio',
 		'/cookies',
 		'/legal',
+		'/povestea-noastra',
 	],
 });
 

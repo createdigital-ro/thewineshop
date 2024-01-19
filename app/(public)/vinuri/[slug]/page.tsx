@@ -1,9 +1,7 @@
-import { AddToCartButton } from '@/components/cart/ui';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import Divider from '@/components/ui/Divider';
 import { prisma } from '@/prisma/client';
 import { CompleteWine } from '@/prisma/zod';
+import { AddToCartButton } from '@/components/cart/ui';
 
 const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 	const currentYear = new Date().getFullYear();
@@ -39,7 +37,7 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 			carac: currentYear - wine?.year > 0 ? currentYear - wine?.year + `${yearsTag}` : '',
 		},
 		{
-			title: 'Casa',
+			title: 'Crama',
 			carac: wine?.house.name,
 		},
 		{
@@ -72,6 +70,7 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 					))}
 				</div>
 				<div className='mt-12'>
+					<p className='mt-16 text-xl'>{wine.price} LEI</p>
 					<AddToCartButton wine={wine} />
 				</div>
 			</div>

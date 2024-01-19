@@ -36,11 +36,11 @@ export default function Footer() {
 		socials: [
 			{
 				title: 'Facebook',
-				link: 'https://www.facebook.com',
+				link: 'https://www.facebook.com/profile.php?id=61554220394142',
 			},
 			{
 				title: 'Instagram',
-				link: 'https://www.instagram.com',
+				link: 'https://www.instagram.com/thewineshop.ro?igsh=ZGYzZWh5aHRiMXBq',
 			},
 		],
 	};
@@ -63,7 +63,7 @@ export default function Footer() {
 						<div className='flex flex-col'>
 							<p className={titleStyles}>Magazin</p>
 							{info.ourShop.map((o, index) => (
-								<Link key={index} href={o.link} className={linkStyles}>
+								<Link key={index} href={o.link} className={`${linkStyles} text-center`}>
 									{o.title}
 								</Link>
 							))}
@@ -78,7 +78,7 @@ export default function Footer() {
 							))}
 						</div> */}
 
-						<div className='flex flex-col'>
+						<div className='flex flex-col items-center md:items-start'>
 							<p className={titleStyles}>Socials</p>
 							{info.socials.map((s, index) => (
 								<Link key={index} href={s.link} className={linkStyles}>

@@ -21,16 +21,19 @@ export const POST = async (req: NextRequest) => {
 
 	const validatedCart = validateCartItems(productsCasted, body);
 
-	const session = await stripe.checkout.sessions.create({
-		success_url: 'http://localhost:3000/contul-meu',
-		billing_address_collection: 'required',
-		locale: 'ro',
-		phone_number_collection: {
-			enabled: true,
+	const session = await stripe.checkout.sessions.create(
+		{
+			success_url: 'http://localhost:3000/contul-meu',
+			billing_address_collection: 'required',
+			locale: 'ro',
+			phone_number_collection: {
+				enabled: true,
+			},
+			line_items: validatedCart,
+			mode: 'payment',
 		},
-		line_items: validatedCart,
-		mode: 'payment',
-	});
+		{}
+	);
 
 	return NextResponse.json(session.url);
 };

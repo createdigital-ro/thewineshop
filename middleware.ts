@@ -8,6 +8,7 @@ export default authMiddleware({
 		'/_vercel/:path*',
 		'/api/uploadthing',
 		'/studio',
+		'/api/stripe/checkout',
 		'/cookies',
 		'/legal',
 		'/povestea-noastra',

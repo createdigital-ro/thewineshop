@@ -134,7 +134,7 @@ const ShoppingCartSheet = () => {
 					<Button
 						className='my-6 mb-2 text-md'
 						onClick={async () => {
-							const response = await fetch('/api/stripe/checkout', {
+							const response = await fetch('https://thewineshop.ro/api/stripe/checkout', {
 								method: 'POST',
 								body: JSON.stringify(cartDetails),
 							});

@@ -6,9 +6,20 @@ import { CompleteWine } from '@/prisma/zod';
 import PaginationComponent from '@/components/pagination';
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
+import { unstable_noStore } from 'next/cache';
 
-const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | undefined; p: number } }) => {
-	const pages = Math.floor((await prisma.wine.count()) / 12);
+const ShoppingPage = async ({ searchParams: { crama, p } }: { searchParams: { crama: number; p: number } }) => {
+	unstable_noStore();
+	const zodParsedHouse = z.coerce.number().nonnegative().optional().parse(crama);
+
+	const pages = Math.floor(
+		(await prisma.wine.count({
+			where: {
+				houseId: zodParsedHouse,
+			},
+		})) / 12
+	);
+
 	const zodParsedPage = z.coerce
 		.number()
 		.nonnegative()
@@ -17,8 +28,12 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 			redirect('/vinuri');
 		})
 		.optional()
-		.parse(searchParams.p);
+		.parse(p);
+
 	let wines = (await prisma.wine.findMany({
+		where: {
+			houseId: zodParsedHouse,
+		},
 		include: {
 			house: true,
 			collection: true,
@@ -26,11 +41,13 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 		skip: (zodParsedPage! * 12) | 0,
 		take: 12,
 	})) as CompleteWine[];
+	if (!wines) return <div>Nu exista niciun vin din aceasta crama.</div>;
+
 	const house =
-		searchParams.id &&
+		crama &&
 		(await prisma.house.findUnique({
 			where: {
-				id: Number(searchParams.id),
+				id: zodParsedHouse,
 			},
 		}));
 	return (
@@ -62,13 +79,12 @@ const ShoppingPage = async ({ searchParams }: { searchParams: { id: number | und
 
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 				{wines.map((wine) => {
-					if (searchParams.id && wine.house.id == searchParams.id)
-						return <ProductItem key={wine.id} wine={wine} />;
+					if (crama && wine.house.id == crama) return <ProductItem key={wine.id} wine={wine} />;
 
-					if (!searchParams.id) return <ProductItem key={wine.id} wine={wine} />;
+					if (!crama) return <ProductItem key={wine.id} wine={wine} />;
 				})}
 			</div>
-			<PaginationComponent page={searchParams.p | 0} totalPages={pages} />
+			{pages > 0 && <PaginationComponent page={p | 0} totalPages={pages} />}
 		</>
 	);
 };

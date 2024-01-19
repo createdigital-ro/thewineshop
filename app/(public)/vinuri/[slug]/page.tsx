@@ -71,6 +71,9 @@ const WineProductPage = async ({ params }: { params: { slug: string } }) => {
 						</div>
 					))}
 				</div>
+				<div className='mt-12'>
+					<AddToCartButton wine={wine} />
+				</div>
 			</div>
 		</div>
 	);

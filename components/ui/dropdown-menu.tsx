@@ -176,7 +176,7 @@ const DropdownNavigation = ({ houses, mobile, ...props }: { houses: House[]; mob
 				<DropdownMenuSeparator />
 				{houses.map(({ id, name }) => (
 					<DropdownMenuItem key={name}>
-						<Link href={`/vinuri?id=${id}`}>{name}</Link>
+						<Link href={`/vinuri?crama=${id}`}>{name}</Link>
 					</DropdownMenuItem>
 				))}
 				<DropdownMenuSeparator />
@@ -196,7 +196,7 @@ const DropdownNavigation = ({ houses, mobile, ...props }: { houses: House[]; mob
 			{houses.map(({ id, name }) => (
 				<DropdownMenuItem key={name}>
 					<SheetClose key={name} asChild>
-						<Link href={`/vinuri?id=${id}`}>{name}</Link>
+						<Link href={`/vinuri?crama=${id}`}>{name}</Link>
 					</SheetClose>
 				</DropdownMenuItem>
 			))}

@@ -4,6 +4,8 @@ import { ChevronDown, Menu, AlertTriangle } from 'lucide-react';
 import { DropdownMenu, DropdownMenuTrigger, DropdownNavigation } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { prisma } from '@/prisma/client';
+import { ShoppingCartComponent } from './cart/ui';
+import { UserDropdown } from './user/ui';
 
 const Navigation = async () => {
 	const houses = await prisma.house.findMany();
@@ -43,9 +45,8 @@ const Navigation = async () => {
 					<Link href={'/povestea-noastra'}>Povestea Noastra</Link>
 				</div>
 				<div className='flex gap-4'>
-					{/* <ShoppingCartComponent /> */}
-					{/* <UserDropdown /> */}
-					{/* <Search /> */}
+					<ShoppingCartComponent />
+					<UserDropdown />
 					<div />
 					<div />
 					<div />

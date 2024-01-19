@@ -1,37 +1,40 @@
 'use client';
 
-import { MinusIcon, PlusIcon, ShoppingBasket, ShoppingCart, Trash2 } from 'lucide-react';
-import { ReactNode } from 'react';
-import Image from 'next/image';
-
 import { CartProvider, useShoppingCart } from 'use-shopping-cart';
-import { Sheet, SheetContent, SheetHeader } from '../ui/sheet';
+
+import { type ReactNode } from 'react';
 import { type Product } from 'use-shopping-cart/core';
+import { type CompleteWine } from '@/prisma/zod';
+
+import { MinusIcon, PlusIcon, ShoppingBasket, ShoppingCart, Trash2 } from 'lucide-react';
+import Image from 'next/image';
+import { Sheet, SheetContent, SheetHeader } from '../ui/sheet';
 import { Button } from '../ui/button';
 import { AspectRatio } from '@radix-ui/react-aspect-ratio';
-import { CompleteWine } from '@/prisma/zod';
 import { toast } from 'sonner';
+
+import { useRouter } from 'next/navigation';
 
 const AddToCartButton = ({ wine }: { wine: CompleteWine }) => {
 	const { addItem } = useShoppingCart();
 	const product: Product = {
 		name: wine.name,
-		price_id: wine.price_id as string,
+		id: wine.id.toString(),
 		price: wine.price * 100,
 		image: wine.image,
 		currency: 'RON',
 		description: 'boata',
 	};
 	return (
-		<div
+		<Button
+			size={'icon'}
 			onClick={() => {
 				addItem(product, { count: 1 });
 				toast.success(`${product.name} a fost adaugat cu succes`);
 			}}
-			className='p-1 bg-primary text-primary-foreground rounded cursor-pointer'
 		>
 			<ShoppingBasket />
-		</div>
+		</Button>
 	);
 };
 
@@ -61,8 +64,10 @@ const ShoppingCartSheet = () => {
 		decrementItem,
 		removeItem,
 		formattedTotalPrice,
-		redirectToCheckout,
 	} = useShoppingCart();
+
+	const router = useRouter();
+
 	return (
 		<Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
 			<SheetContent>
@@ -126,7 +131,17 @@ const ShoppingCartSheet = () => {
 						<span>{formattedTotalPrice}</span>
 					</div>
 					<span className='text-muted-foreground'>Livrarea si taxele sunt calculate la plata</span>
-					<Button className='my-6 mb-2 text-md' onClick={() => redirectToCheckout()}>
+					<Button
+						className='my-6 mb-2 text-md'
+						onClick={async () => {
+							const response = await fetch('/api/stripe/checkout', {
+								method: 'POST',
+								body: JSON.stringify(cartDetails),
+							});
+							const stripeSessionUrl = await response.json();
+							window.location.assign(stripeSessionUrl);
+						}}
+					>
 						Finalizeaza Plata
 					</Button>
 					<Button onClick={() => handleCartClick()} className='flex gap-1 items-center' variant={'outline'}>
@@ -141,18 +156,8 @@ const ShoppingCartSheet = () => {
 const CartProviderClient = ({ children }: { children: ReactNode }) => {
 	const stripe_pk = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
 	return (
-		<CartProvider
-			mode='payment'
-			cartMode='client-only'
-			stripe={stripe_pk}
-			successUrl='http://localhost:3000/'
-			cancelUrl='http://localhost:3000/'
-			currency='RON'
-			shouldPersist={true}
-			allowedCountries={['RO']}
-			billingAddressCollection={true}
-		>
-			<>{children}</>
+		<CartProvider cartMode='checkout-session' stripe={stripe_pk} currency='RON' shouldPersist={true}>
+			{children}
 		</CartProvider>
 	);
 };
